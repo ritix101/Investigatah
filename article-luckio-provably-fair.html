@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Is Luck.io Actually Fair? A Plain-Language Investigation | INVESTIGATAH</title>
-<meta name="description" content="Luck.io calls itself a non-custodial, provably-fair crypto casino on Solana. We break down what those claims mean, what the investigation looked at, and what it means for the average player — with the full on-chain report linked below.">
+<meta name="description" content="Luck.io called itself a non-custodial, provably-fair crypto casino on Solana. Our independent technical assessment tested those claims against the platform's own code, audit and on-chain data — and covers what happened after Luck.io shut down. Full v2.0 report linked below.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="theme-color" content="#040705">
 <link rel="canonical" href="https://www.investigatah.com/article-luckio-provably-fair.html">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Is Luck.io Actually Fair? A Plain-Language Investigation">
-<meta property="og:description" content="Luck.io claims to be non-custodial and provably-fair. Here's what the investigation actually found.">
+<meta property="og:description" content="An independent technical assessment of Luck.io's custody, governance, verifiability and fairness claims — updated with the platform's shutdown.">
 <meta property="og:url" content="https://www.investigatah.com/article-luckio-provably-fair.html">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="css/style.css">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23040705'/><circle cx='16' cy='16' r='7' fill='none' stroke='%2300ff66' stroke-width='2.4'/><circle cx='16' cy='16' r='2.4' fill='%2300ff66'/></svg>">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Article","headline":"Is Luck.io Actually Fair? A Plain-Language Investigation","description":"A plain-language investigation into Luck.io's provably-fair and non-custodial claims.","author":{"@type":"Organization","name":"INVESTIGATAH"},"publisher":{"@type":"Organization","name":"INVESTIGATAH"},"mainEntityOfPage":"https://www.investigatah.com/article-luckio-provably-fair.html"}
+{"@context":"https://schema.org","@type":"Article","headline":"Is Luck.io Actually Fair? A Plain-Language Investigation","description":"An independent technical assessment of Luck.io's custody, governance, verifiability and fairness claims, updated to cover the platform's shutdown.","author":{"@type":"Organization","name":"INVESTIGATAH"},"publisher":{"@type":"Organization","name":"INVESTIGATAH"},"mainEntityOfPage":"https://www.investigatah.com/article-luckio-provably-fair.html","dateModified":"2026-07-09"}
 </script>
 </head>
 <body>
@@ -27,7 +27,7 @@
 
 <nav class="nav">
   <div class="nav-in">
-    <a href="index.html" class="logo"><span class="dot"></span>INVESTIGATAH</a>
+    <a href="index.html" class="logo"><img src="images/investigatah-logo.png" alt="INVESTIGATAH" class="logo-img"></a>
     <div class="nav-links">
       <a href="index.html">Home</a><a href="work.html">Work</a><a href="articles.html" class="active">Articles</a><a href="about.html">About</a><a href="contact.html">Contact</a>
       <a href="contact.html" class="nav-cta">Start Investigation</a>
@@ -39,15 +39,15 @@
 <header class="art-header">
   <div class="wrap">
     <a href="articles.html" class="backlink">← All articles</a>
-    <span class="case-badge">CASE FILE · INVG-2025-001</span>
+    <span class="case-badge">CASE FILE · INVG-2025-001 · UPDATED 9 JUL 2026</span>
     <h1>Is Luck.io Actually Fair? A Plain-Language Look At Its Core Claims.</h1>
-    <p class="subtitle">Luck.io markets itself as a non-custodial, provably-fair crypto casino built on Solana — you play straight from your wallet, and every outcome is supposed to be independently verifiable. Our investigation examined both of those claims. Here's what an average player needs to know.</p>
+    <p class="subtitle">Luck.io marketed itself as a non-custodial, provably-fair crypto casino built on Solana — you play straight from your wallet, and every outcome is supposed to be independently verifiable. Our investigation tested those claims against the platform's own code, audit and on-chain data. Here's what held up, what didn't, and what happened after Luck.io shut down.</p>
 
     <div class="meta-strip">
       <div>CASE<b>INVG-2025-001</b></div>
       <div>CHAIN<b>Solana</b></div>
-      <div>PLATFORM<b>Luck.io</b></div>
-      <div>READING TIME<b>~ 5 min</b></div>
+      <div>STATUS<b>Ceased Operations</b></div>
+      <div>READING TIME<b>~ 8 min</b></div>
     </div>
   </div>
 </header>
@@ -57,46 +57,68 @@
     <article class="art-prose">
 
       <div class="tldr">
-        <p><strong>The short version.</strong> Luck.io tells players two big things: your money never leaves your wallet ("non-custodial"), and every game outcome can be independently checked ("provably fair"). Both sound reassuring. Our investigation looked at how much of that actually holds up when you follow the on-chain evidence — and where the gap between the marketing and the reality begins to show.</p>
+        <p><strong>The short version.</strong> Luck.io told players two big things: your money never leaves your wallet ("non-custodial"), and every game outcome can be independently checked ("provably fair"). Our updated technical assessment tested both claims directly against Luck.io's own code, its published audit, and public Solana data — and went further, also checking who actually held the power to change the rules and whether the deployed code could be independently verified at all.</p>
+        <p>The result is more layered than a simple "true" or "false." Some narrow, technical versions of Luck.io's claims hold up — no named person held a private key to your deposit. But the platform's absolute language — "no one, not even the team, can touch your assets," "no human can interfere," "fully decentralized" — does not match what the architecture actually allowed. Overall risk was rated <strong>High</strong>, with <strong>Medium–High</strong> confidence in that rating. Luck.io has since ceased operations; what that does and doesn't change is covered near the end.</p>
       </div>
 
-      <h2 id="what-is-luckio">What Luck.io Says It Is</h2>
-      <p>Luck.io is a crypto gambling platform built on the Solana blockchain. Unlike most online casinos — which hold your money, ask you to create an account, and rely on you trusting their software — Luck.io positions itself as different. According to its own marketing, players deposit, gamble, and withdraw funds directly from their own wallets. There is no traditional account login. In principle, you connect a Phantom or Solflare wallet, play, and walk away.</p>
-      <p>Two words carry most of that promise: <strong>non-custodial</strong> and <strong>provably fair</strong>. If both are true, they represent a genuinely different kind of casino — one where the operator can't run away with your funds and can't quietly rig the games. If either one isn't fully true, players are getting the perception of that protection without the reality.</p>
+      <h2 id="what-is-luckio">What Luck.io Said It Was</h2>
+      <p>Luck.io was a crypto gambling platform built on the Solana blockchain. Unlike most online casinos — which hold your money, ask you to create an account, and rely on you trusting their software — Luck.io positioned itself as different. According to its own marketing, players deposited, gambled, and withdrew funds directly from their own wallets, through a per-user structure it called a "Smart Vault." There was no traditional account login. In principle, you connected a Phantom or Solflare wallet, played, and walked away.</p>
+      <p>Two words carried most of that promise: <strong>non-custodial</strong> and <strong>provably fair</strong>. If both were true in the fullest sense, they'd describe a genuinely different kind of casino — one where the operator can't run away with your funds and can't quietly influence the games. The assessment's central question, in plain terms: after you deposit, who actually holds the power that decides whether, when, and to whom your funds move?</p>
 
       <h2 id="claim-non-custodial">Claim One: "Non-Custodial"</h2>
-      <p>"Non-custodial" is a phrase from crypto, but the idea is simple. In a custodial system, someone else holds your money for you. When you deposit into a normal online casino, that casino now controls your funds — you're trusting them to give it back when you cash out. If they go bankrupt, get hacked, or refuse to pay you, your money is at risk.</p>
-      <p>In a truly non-custodial system, the platform never controls your money. You interact with a smart contract directly from your own wallet. The moment you're not actively placing a bet, your funds sit under your own private key.</p>
-      <p>That's the theory. In practice, the picture is often more complicated. Many platforms that advertise as "non-custodial" still route funds through operator-controlled wallets at some point in the flow — during game settlement, during payout, or for liquidity purposes. When that happens, the "non-custodial" claim starts to look more like clever wording than technical fact. Our full report examines exactly where Luck.io's flow of funds actually sits on this spectrum, and what it means for players.</p>
+      <p>"Non-custodial" is a phrase from crypto, but the idea is simple. In a custodial system, someone else holds your money for you. When you deposit into a normal online casino, that casino now controls your funds — you're trusting them to give it back when you cash out. If they go bankrupt, get hacked, or refuse to pay you, your money is at risk. In a truly non-custodial system, no one but you can move your funds.</p>
+      <p>The assessment inspected a real Smart Vault account on a public Solana block explorer, and two things stood out. First, the vault has no private key — it's what's called a "Program-Derived Address," an account type that exists only as an address a program can control, not something any person, including you, can directly sign for. Second, the account's listed owner is a Luck.io program, not the depositor's wallet.</p>
+      <p>In practice, that means withdrawing your money depends on that program acting on your behalf — not on you holding the kind of direct, exclusive control the marketing described. To be fair, this is a completely standard way to build non-custodial apps on Solana, and it isn't evidence of anything improper by itself. But it does mean the strength of the "non-custodial" promise rests entirely on one thing: whether that program's rules are fixed. Which brings us to the next finding.</p>
+
+      <h2 id="claim-upgradeability">Who Could Actually Change The Rules?</h2>
+      <p>A smart contract can be deployed two ways: immutable, meaning its code can never change once it's live, or upgradeable, meaning a designated authority can swap in new logic later. Luck.io's vault-governing program was upgradeable, and its upgrade authority hadn't been given up — it was held by a multisig wallet requiring approval from 3 of 9 unnamed signers.</p>
+      <p>Practically, that means three cooperating signers held the technical capability to deploy replacement logic governing deposits, withdrawals and settlement, at any point, for funds already sitting in the platform. To be clear about what this does and doesn't say: the assessment found no evidence this capability was ever misused, and upgradeability is also a legitimate, common security practice — it's how teams patch bugs without asking every user to migrate funds. But a live upgrade authority, by definition, is a human-controlled ability to change the program. That sits directly at odds with marketing lines like "no human can interfere" and "fully decentralized."</p>
 
       <h2 id="claim-provably-fair">Claim Two: "Provably Fair"</h2>
       <p>"Provably fair" is meant to be the crypto casino's answer to the age-old question: <em>how do I know the game isn't rigged?</em> In a traditional casino, you have to trust the operator. In a properly implemented provably-fair system, you don't have to trust anyone — you can cryptographically verify that the outcome of each game was decided before you played it, and wasn't manipulated based on your bet.</p>
-      <p>The catch is that "provably fair" only works if you can actually verify it — meaningfully, and without the platform having room to change the rules mid-game. That means the seeds and hashes have to be published, the algorithm has to be transparent, and the outcome has to be reproducible by anyone with basic tools. Our report walks through how Luck.io's setup measures against that standard, and where the room for centralised discretion still exists.</p>
+      <p>Luck.io's marketing said the randomness behind every game came from multiple independent oracles, publishing signatures on-chain that anyone could check. The assessment looked for those published oracle addresses and on-chain signatures through general block-explorer research and couldn't locate them. Luck.io's own published audit also noted that the logic determining game outcomes ran on off-chain backend servers, not through on-chain oracles — with the audit itself flagging that users had to trust those servers wouldn't collude or misuse their authority.</p>
+      <p>One honest caveat: the assessment didn't test Luck.io's own dedicated per-bet verification tool, so it stops short of declaring the fairness system disproven — that specific question is treated as unresolved, not false. Separately, an independent pseudonymous researcher had already alleged that the randomness function was itself controlled by a multisig wallet, which would be consistent with (though doesn't itself prove) the operator retaining a real say over outcomes.</p>
+
+      <h2 id="verifiability">Could Anyone Actually Check The Code?</h2>
+      <p>"Verifiable" has a specific, testable meaning here: someone can rebuild the program from its published source code and confirm the resulting hash matches what's actually deployed on-chain. Without that match, an audit — however reputable the firm — only attests to whatever code the auditor was shown, which may or may not be what's actually running for users.</p>
+      <p>The assessment ran Luck.io's deployed program through an independent verification service and it did not confirm a match to any published source at the time. That lines up with a detail buried in the audit's own scope section: Luck.io's codebase was reportedly handed to the auditor by email rather than published to a public repository — a step that would have let anyone confirm exactly what was tested. Together, this means that at the time of the assessment, no outside party could actually confirm the audited code and the live code were the same. That's not the same as proving they differed — only that the "verifiable" claim wasn't something the public could actually check.</p>
+
+      <h2 id="settlement">Who Actually Decided When You Won Or Lost?</h2>
+      <p>Luck.io's marketing described settlement — the step that pays out a win or books a loss — as automatic and handled entirely by smart contracts. Luck.io's own published audit told a more specific story: backend, operator-controlled wallets initiated the settlement instructions, and the on-chain program simply executed the resulting transfer.</p>
+      <p>That's a meaningful distinction. The transfer itself happens on-chain, so "done by smart contracts" is true of that final step — but the decision of what to settle, and when, originated off-chain, on servers Luck.io controlled. That's a common, workable design pattern in crypto apps generally, and it isn't inherently improper. It's just a different, more centralized trust model than the fully autonomous picture the marketing painted.</p>
 
       <blockquote>A "non-custodial, provably-fair" label is only as strong as what happens when you actually test it against the chain.</blockquote>
 
       <h2 id="why-it-matters">Why This Matters For Regular Players</h2>
-      <p>Most players sign up for a crypto casino because the marketing feels safer than a normal one. "Your funds stay in your wallet." "Every game is verifiable." Those phrases do a lot of the work of convincing users to deposit real money — often quite a lot of it.</p>
-      <p>The point of this investigation isn't to accuse Luck.io of anything specific in an unsupported way. It's to hold the marketing to the same standard the marketing itself invites: <strong>if the platform says these claims are verifiable, then verifying them is the honest thing to do.</strong> Where the claims hold up, players should feel reassured. Where they don't, players deserve to know before they deposit.</p>
+      <p>Most players sign up for a crypto casino because the marketing feels safer than a normal one. "Your funds stay in your wallet." "Every game is verifiable." "No human can interfere." Those phrases do a lot of the work of convincing users to deposit real money — often quite a lot of it.</p>
+      <p>The point of this investigation isn't to accuse Luck.io of anything specific in an unsupported way — and it's worth repeating that none of these findings show the platform actually misused the technical power it held. It's to hold the marketing to the same standard the marketing itself invited: <strong>if a platform says these claims are verifiable, then verifying them is the honest thing to do.</strong> Where the claims held up, players should feel reassured. Where the absolute framing outran the architecture, players deserved to know before they deposited.</p>
+
+      <h2 id="wind-down">What Happened Next: Luck.io Shut Down</h2>
+      <p>On 24 April 2026, after this assessment's observation period, Luck.io announced it was ceasing operations and told users to withdraw their Smart Vault balances without delay. The platform's site later stated that all withdrawable balances had been returned on-chain to their owners' wallets, and public reporting attributed the closure to unsustainable spending rather than any hack or insolvency.</p>
+      <p>That's a genuinely good outcome, and it's consistent with the narrower, accurate reading of the custody claim: an on-chain withdrawal path existed, and no loss of user funds was observed at closure. But it doesn't retroactively resolve the governance concerns raised above. A solvent operator choosing to wind down responsibly tells you about that operator's conduct in that instance — it doesn't erase the fact that, while Luck.io was live, it held real upgrade authority over user vaults and initiated settlement off-chain, exactly the kind of centralized control its marketing said didn't exist.</p>
 
       <h2 id="verify">You Can Verify This Yourself</h2>
-      <p>Everything in the full report is anchored to public Solana on-chain data. Wallet addresses, transaction signatures and program interactions are all listed. You don't have to take our word for any of it — you can paste any address into a Solana explorer like <strong>Solscan</strong> or <strong>Solana Explorer</strong> and see the exact same data we did. That is the whole point of on-chain forensics.</p>
+      <p>Everything in the full report is anchored to public Solana on-chain data, the platform's own published audit, and an independent code-verification service. Wallet and program addresses, the multisig configuration, and the verification-tool results are all listed. You don't have to take our word for any of it — you can paste any address into a Solana explorer like <strong>Solscan</strong> or <strong>Solana Explorer</strong> and see the exact same data we did. That is the whole point of on-chain forensics.</p>
 
       <div class="pdf-cta">
-        <h4>Read the full investigation.</h4>
-        <p>The complete report includes the wallet flows we examined, the specific claims tested against on-chain evidence, and the methodology used. Independently verifiable from start to finish.</p>
-        <a class="btn" href="https://docs.google.com/document/d/1n3FgDfK1hiWsM2eEdIh3sogpQdDOc44ptoclfhFoRqM/export?format=pdf" target="_blank" rel="noopener">Download Full Report ↓</a>
-        <div class="meta"><span>Case: <b>INVG-2025-001</b></span><span>Format: <b>PDF</b></span><span>Length: <b>Full report</b></span></div>
+        <h4>Read the full investigation (v2.0).</h4>
+        <p>The complete report separates every finding into observed fact, inference, and open question — with the wallet and program addresses, verification-tool results, and the post-shutdown update all included. Independently checkable from start to finish.</p>
+        <a class="btn" href="reports/luckio-forensic-assessment-v2.pdf" target="_blank" rel="noopener">Download Full Report ↓</a>
+        <div class="meta"><span>Case: <b>INVG-2025-001</b></span><span>Version: <b>2.0</b></span><span>Format: <b>PDF</b></span></div>
       </div>
 
     </article>
 
     <aside class="toc" aria-label="On this page">
       <h5>Contents</h5>
-      <a href="#what-is-luckio">What Luck.io Says It Is</a>
+      <a href="#what-is-luckio">What Luck.io Said It Was</a>
       <a href="#claim-non-custodial">Claim: Non-Custodial</a>
+      <a href="#claim-upgradeability">Who Could Change The Rules</a>
       <a href="#claim-provably-fair">Claim: Provably Fair</a>
+      <a href="#verifiability">Could The Code Be Checked</a>
+      <a href="#settlement">Who Decided Wins &amp; Losses</a>
       <a href="#why-it-matters">Why It Matters</a>
+      <a href="#wind-down">Luck.io Shut Down</a>
       <a href="#verify">Verify It Yourself</a>
     </aside>
   </div>
@@ -122,7 +144,7 @@
 
 <footer>
   <div class="wrap foot-grid">
-    <div><a href="index.html" class="logo"><span class="dot"></span>INVESTIGATAH</a><p>Specialized blockchain forensics and asset recovery agency. Dedicated to justice within the digital ecosystem.</p></div>
+    <div><a href="index.html" class="logo"><img src="images/investigatah-logo.png" alt="INVESTIGATAH" class="logo-img"></a><p>Specialized blockchain forensics and asset recovery agency. Dedicated to justice within the digital ecosystem.</p></div>
     <div><h4>Navigate</h4><ul><li><a href="index.html">Home</a></li><li><a href="work.html">Work</a></li><li><a href="articles.html">Articles</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
     <div><h4>Capabilities</h4><ul><li><a href="index.html">On-Chain Tracing</a></li><li><a href="work.html">Platform Investigations</a></li><li><a href="contact.html">Asset Recovery</a></li></ul></div>
   </div>
