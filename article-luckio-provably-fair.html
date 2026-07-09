@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Is Luck.io Actually Fair? A Plain-Language Investigation | INVESTIGATAH</title>
+<meta name="description" content="Luck.io calls itself a non-custodial, provably-fair crypto casino on Solana. We break down what those claims mean, what the investigation looked at, and what it means for the average player — with the full on-chain report linked below.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#040705">
+<link rel="canonical" href="https://www.investigatah.com/article-luckio-provably-fair.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Is Luck.io Actually Fair? A Plain-Language Investigation">
+<meta property="og:description" content="Luck.io claims to be non-custodial and provably-fair. Here's what the investigation actually found.">
+<meta property="og:url" content="https://www.investigatah.com/article-luckio-provably-fair.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23040705'/><circle cx='16' cy='16' r='7' fill='none' stroke='%2300ff66' stroke-width='2.4'/><circle cx='16' cy='16' r='2.4' fill='%2300ff66'/></svg>">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Is Luck.io Actually Fair? A Plain-Language Investigation","description":"A plain-language investigation into Luck.io's provably-fair and non-custodial claims.","author":{"@type":"Organization","name":"INVESTIGATAH"},"publisher":{"@type":"Organization","name":"INVESTIGATAH"},"mainEntityOfPage":"https://www.investigatah.com/article-luckio-provably-fair.html"}
+</script>
+</head>
+<body>
+<div class="reading-progress" id="progress"></div>
+
+<nav class="nav">
+  <div class="nav-in">
+    <a href="index.html" class="logo"><span class="dot"></span>INVESTIGATAH</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a><a href="work.html">Work</a><a href="articles.html" class="active">Articles</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+      <a href="contact.html" class="nav-cta">Start Investigation</a>
+    </div>
+    <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<header class="art-header">
+  <div class="wrap">
+    <a href="articles.html" class="backlink">← All articles</a>
+    <span class="case-badge">CASE FILE · INVG-2025-001</span>
+    <h1>Is Luck.io Actually Fair? A Plain-Language Look At Its Core Claims.</h1>
+    <p class="subtitle">Luck.io markets itself as a non-custodial, provably-fair crypto casino built on Solana — you play straight from your wallet, and every outcome is supposed to be independently verifiable. Our investigation examined both of those claims. Here's what an average player needs to know.</p>
+
+    <div class="meta-strip">
+      <div>CASE<b>INVG-2025-001</b></div>
+      <div>CHAIN<b>Solana</b></div>
+      <div>PLATFORM<b>Luck.io</b></div>
+      <div>READING TIME<b>~ 5 min</b></div>
+    </div>
+  </div>
+</header>
+
+<section class="art-body">
+  <div class="art-body-grid">
+    <article class="art-prose">
+
+      <div class="tldr">
+        <p><strong>The short version.</strong> Luck.io tells players two big things: your money never leaves your wallet ("non-custodial"), and every game outcome can be independently checked ("provably fair"). Both sound reassuring. Our investigation looked at how much of that actually holds up when you follow the on-chain evidence — and where the gap between the marketing and the reality begins to show.</p>
+      </div>
+
+      <h2 id="what-is-luckio">What Luck.io Says It Is</h2>
+      <p>Luck.io is a crypto gambling platform built on the Solana blockchain. Unlike most online casinos — which hold your money, ask you to create an account, and rely on you trusting their software — Luck.io positions itself as different. According to its own marketing, players deposit, gamble, and withdraw funds directly from their own wallets. There is no traditional account login. In principle, you connect a Phantom or Solflare wallet, play, and walk away.</p>
+      <p>Two words carry most of that promise: <strong>non-custodial</strong> and <strong>provably fair</strong>. If both are true, they represent a genuinely different kind of casino — one where the operator can't run away with your funds and can't quietly rig the games. If either one isn't fully true, players are getting the perception of that protection without the reality.</p>
+
+      <h2 id="claim-non-custodial">Claim One: "Non-Custodial"</h2>
+      <p>"Non-custodial" is a phrase from crypto, but the idea is simple. In a custodial system, someone else holds your money for you. When you deposit into a normal online casino, that casino now controls your funds — you're trusting them to give it back when you cash out. If they go bankrupt, get hacked, or refuse to pay you, your money is at risk.</p>
+      <p>In a truly non-custodial system, the platform never controls your money. You interact with a smart contract directly from your own wallet. The moment you're not actively placing a bet, your funds sit under your own private key.</p>
+      <p>That's the theory. In practice, the picture is often more complicated. Many platforms that advertise as "non-custodial" still route funds through operator-controlled wallets at some point in the flow — during game settlement, during payout, or for liquidity purposes. When that happens, the "non-custodial" claim starts to look more like clever wording than technical fact. Our full report examines exactly where Luck.io's flow of funds actually sits on this spectrum, and what it means for players.</p>
+
+      <h2 id="claim-provably-fair">Claim Two: "Provably Fair"</h2>
+      <p>"Provably fair" is meant to be the crypto casino's answer to the age-old question: <em>how do I know the game isn't rigged?</em> In a traditional casino, you have to trust the operator. In a properly implemented provably-fair system, you don't have to trust anyone — you can cryptographically verify that the outcome of each game was decided before you played it, and wasn't manipulated based on your bet.</p>
+      <p>The catch is that "provably fair" only works if you can actually verify it — meaningfully, and without the platform having room to change the rules mid-game. That means the seeds and hashes have to be published, the algorithm has to be transparent, and the outcome has to be reproducible by anyone with basic tools. Our report walks through how Luck.io's setup measures against that standard, and where the room for centralised discretion still exists.</p>
+
+      <blockquote>A "non-custodial, provably-fair" label is only as strong as what happens when you actually test it against the chain.</blockquote>
+
+      <h2 id="why-it-matters">Why This Matters For Regular Players</h2>
+      <p>Most players sign up for a crypto casino because the marketing feels safer than a normal one. "Your funds stay in your wallet." "Every game is verifiable." Those phrases do a lot of the work of convincing users to deposit real money — often quite a lot of it.</p>
+      <p>The point of this investigation isn't to accuse Luck.io of anything specific in an unsupported way. It's to hold the marketing to the same standard the marketing itself invites: <strong>if the platform says these claims are verifiable, then verifying them is the honest thing to do.</strong> Where the claims hold up, players should feel reassured. Where they don't, players deserve to know before they deposit.</p>
+
+      <h2 id="verify">You Can Verify This Yourself</h2>
+      <p>Everything in the full report is anchored to public Solana on-chain data. Wallet addresses, transaction signatures and program interactions are all listed. You don't have to take our word for any of it — you can paste any address into a Solana explorer like <strong>Solscan</strong> or <strong>Solana Explorer</strong> and see the exact same data we did. That is the whole point of on-chain forensics.</p>
+
+      <div class="pdf-cta">
+        <h4>Read the full investigation.</h4>
+        <p>The complete report includes the wallet flows we examined, the specific claims tested against on-chain evidence, and the methodology used. Independently verifiable from start to finish.</p>
+        <a class="btn" href="https://docs.google.com/document/d/1n3FgDfK1hiWsM2eEdIh3sogpQdDOc44ptoclfhFoRqM/export?format=pdf" target="_blank" rel="noopener">Download Full Report ↓</a>
+        <div class="meta"><span>Case: <b>INVG-2025-001</b></span><span>Format: <b>PDF</b></span><span>Length: <b>Full report</b></span></div>
+      </div>
+
+    </article>
+
+    <aside class="toc" aria-label="On this page">
+      <h5>Contents</h5>
+      <a href="#what-is-luckio">What Luck.io Says It Is</a>
+      <a href="#claim-non-custodial">Claim: Non-Custodial</a>
+      <a href="#claim-provably-fair">Claim: Provably Fair</a>
+      <a href="#why-it-matters">Why It Matters</a>
+      <a href="#verify">Verify It Yourself</a>
+    </aside>
+  </div>
+</section>
+
+<section class="related">
+  <div class="wrap">
+    <h4>Continue reading</h4>
+    <div class="rel-grid">
+      <a class="rel-card" href="article-luckio-influencers.html">
+        <span class="rel-id">CASE FILE INVG-2025-002</span>
+        <h5>Follow The Money: The On-Chain Trail of Luck.io's Influencer Payments</h5>
+        <p>We traced the flow from Luck.io's cold wallet, through a distribution address, into influencer wallets — including one named streamer's $156k in payouts.</p>
+      </a>
+      <a class="rel-card" href="article-rollbit-kyc.html">
+        <span class="rel-id">CASE FILE INVG-2025-004</span>
+        <h5>KYC On Demand: How Rollbit Applies Its Own Rules Only When It Suits The House</h5>
+        <p>Rollbit's Terms &amp; Conditions demand full KYC before you wager. In practice, the rule gets enforced when the house benefits — and ignored when it doesn't.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div><a href="index.html" class="logo"><span class="dot"></span>INVESTIGATAH</a><p>Specialized blockchain forensics and asset recovery agency. Dedicated to justice within the digital ecosystem.</p></div>
+    <div><h4>Navigate</h4><ul><li><a href="index.html">Home</a></li><li><a href="work.html">Work</a></li><li><a href="articles.html">Articles</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div><h4>Capabilities</h4><ul><li><a href="index.html">On-Chain Tracing</a></li><li><a href="work.html">Platform Investigations</a></li><li><a href="contact.html">Asset Recovery</a></li></ul></div>
+  </div>
+  <div class="wrap foot-base"><span>© 2026 INVESTIGATAH — ALL RIGHTS RESERVED</span><span>ritix@investigatah.com</span></div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+const bar=document.getElementById('progress');
+addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-innerHeight;bar.style.width=Math.min(100,(scrollY/h)*100)+'%'});
+const toc=document.querySelectorAll('.toc a'),heads=[...document.querySelectorAll('.art-prose h2')];
+const so=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){const id=e.target.id;toc.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+id))}})},{rootMargin:'-30% 0px -65% 0px'});
+heads.forEach(h=>so.observe(h));
+</script>
+</body>
+</html>

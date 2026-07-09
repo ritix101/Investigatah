@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Follow the Money: Luck.io's Influencer Payment Trail | INVESTIGATAH</title>
+<meta name="description" content="We traced the on-chain path from Luck.io's cold wallet, through an intermediary distribution address, into the wallets of influencers promoting the platform — including one streamer's $156k payout. Full report linked.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#040705">
+<link rel="canonical" href="https://www.investigatah.com/article-luckio-influencers.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Follow the Money: Luck.io's Influencer Payment Trail">
+<meta property="og:description" content="The on-chain trail from Luck.io's cold wallet into influencer pockets.">
+<meta property="og:url" content="https://www.investigatah.com/article-luckio-influencers.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23040705'/><circle cx='16' cy='16' r='7' fill='none' stroke='%2300ff66' stroke-width='2.4'/><circle cx='16' cy='16' r='2.4' fill='%2300ff66'/></svg>">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Follow the Money: Luck.io's Influencer Payment Trail","datePublished":"2025-07-28","description":"An on-chain trace of Luck.io's payments to influencer promoters.","author":{"@type":"Organization","name":"INVESTIGATAH"},"publisher":{"@type":"Organization","name":"INVESTIGATAH"},"mainEntityOfPage":"https://www.investigatah.com/article-luckio-influencers.html"}
+</script>
+</head>
+<body>
+<div class="reading-progress" id="progress"></div>
+
+<nav class="nav">
+  <div class="nav-in">
+    <a href="index.html" class="logo"><span class="dot"></span>INVESTIGATAH</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a><a href="work.html">Work</a><a href="articles.html" class="active">Articles</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+      <a href="contact.html" class="nav-cta">Start Investigation</a>
+    </div>
+    <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<header class="art-header">
+  <div class="wrap">
+    <a href="articles.html" class="backlink">← All articles</a>
+    <span class="case-badge">CASE FILE · INVG-2025-002</span>
+    <h1>Follow The Money: The On-Chain Trail Of Luck.io's Influencer Payments.</h1>
+    <p class="subtitle">When a streamer with hundreds of thousands of followers tells you a crypto casino is "safe" and "fair", how do you know they mean it — or how much they were paid to say it? For Luck.io, we didn't need to guess. The Solana blockchain records the answer, in public, forever.</p>
+
+    <div class="meta-strip">
+      <div>CASE<b>INVG-2025-002</b></div>
+      <div>CHAIN<b>Solana</b></div>
+      <div>DATED<b>28 July 2025</b></div>
+      <div>READING TIME<b>~ 6 min</b></div>
+    </div>
+  </div>
+</header>
+
+<section class="art-body">
+  <div class="art-body-grid">
+    <article class="art-prose">
+
+      <div class="tldr">
+        <p><strong>The short version.</strong> Luck.io's marketing runs largely on influencer endorsements — streamers, X/Twitter accounts and content creators telling their audiences the platform is worth trusting. Behind the scenes, on-chain data shows a clean, structured payment pipeline: money leaves Luck.io's cold wallet, passes through a single distribution address, and ends up in influencer wallets. In at least one confirmed case, a single named streamer received the equivalent of <strong>$156,000</strong>.</p>
+      </div>
+
+      <h2 id="the-flow">The Flow, In Plain English</h2>
+      <p>Almost every Luck.io influencer payment we traced follows the same shape. It's not messy. It's not accidental. It looks exactly like what an operations team would set up if they wanted to move money to promoters in a predictable, repeatable way — while keeping the source technically at arm's length.</p>
+      <p>Here's the pattern:</p>
+
+      <div class="chain">
+        <div><span class="k">step 1 · cold wallet →</span> <span class="hash">4xMajQJ7GSyUpRK2iyaQDN8vHnZpow8NZWuPjeWoYYBc</span></div>
+        <div><span class="k">step 2 · distribution →</span> <span class="hash">F2jzJBfWgtCSbS7iNwYfmBVX6FxVdQcL99rCbZ5p9J4F</span></div>
+        <div><span class="k">step 3 · recipients →</span> <span class="v">named influencer wallets</span></div>
+      </div>
+
+      <p>Money leaves Luck.io's cold storage. It arrives at a single distribution wallet. From there, it fans out to individual influencer addresses. It's a classic "hub-and-spoke" pay-out structure — the same shape you'd expect from an affiliate program at any online business, only visible on-chain because Solana is a public ledger.</p>
+
+      <h2 id="the-cold-wallet">Step 1 — The Cold Wallet</h2>
+      <p>A "cold wallet" is a wallet that isn't connected to the internet in real time, and usually holds funds that aren't needed for daily operations. Platforms use them to keep large reserves safer from hacks. For Luck.io, the wallet acting as the source of influencer funds is <span class="wallet">4xMajQJ7…YYBc</span>.</p>
+      <p>Anyone can paste that address into Solscan or Solana Explorer and see the outgoing transactions themselves. This isn't a secret address. It's a fact of the chain. What matters is not that the wallet exists — it's what leaves it, and where it lands.</p>
+
+      <h2 id="the-distribution">Step 2 — The Distribution Address</h2>
+      <p>Every promoter payment we followed passes through the same intermediary: <span class="wallet">F2jzJBfW…9J4F</span>. Think of this address as the "pay-out desk" — the wallet whose only job is to receive from the cold wallet and forward onward to individual creators.</p>
+      <p>A distribution wallet like this makes life easy for an ops team. Instead of the cold wallet touching dozens of influencer addresses directly (which would make attribution and analytics obvious), one clean transfer goes to the distribution address, and the fan-out to individuals happens from there. The trade-off, from the platform's perspective, is that once anyone identifies the distribution address, the entire pay-out network becomes traceable in a single step.</p>
+
+      <h2 id="a-named-recipient">Step 3 — A Named Recipient: Lunix</h2>
+      <p>One of the wallets on the receiving end belongs to a Solana-space streamer known as <strong>Lunix (@SolLunix)</strong>. Our reporting cut-off, dated <strong>28 July 2025</strong>, shows the equivalent of roughly <strong>$156,000</strong> flowing to a wallet attributable to that account.</p>
+      <p>To be clear about what this means and what it doesn't: this isn't a claim that Lunix did anything illegal. Influencer marketing is a legitimate part of how modern platforms grow. What it <em>is</em> is a data point players are entitled to. When a public figure recommends a gambling platform to their audience, viewers are usually not being told that recommendation is bought and paid for at that scale. The blockchain, quietly, says otherwise.</p>
+
+      <blockquote>The moment the distribution address becomes public, the influencer roster becomes public with it. Every recipient wallet is one Solscan click away.</blockquote>
+
+      <h2 id="why-this-matters">Why This Matters For Everyday Viewers</h2>
+      <p>Most people who bet on a crypto casino they saw on a livestream aren't researching. They're trusting the person on their screen. That trust has cash value — enough for platforms to build entire pay-out pipelines around it.</p>
+      <p>There's nothing wrong with sponsored content when it's disclosed. What's not fine is when six-figure payments quietly flow to the same people telling audiences a platform is "safe", "fair" or "legit" — while the audience is asked to bet real money on that word.</p>
+      <p>The full report walks through the additional recipient wallets we identified, the individual sums flowing to each, and how you can independently reproduce every step of the trace on a Solana explorer using nothing but the addresses above and public data.</p>
+
+      <div class="pdf-cta">
+        <h4>Read the full fund-flow analysis.</h4>
+        <p>The full report contains the complete list of identified recipient wallets, payment amounts, dates, and transaction signatures — everything you need to independently verify each finding on-chain.</p>
+        <a class="btn" href="https://docs.google.com/document/d/1EfE0NoPqd5JnNkEyyxiYQgOMSNT-ZAZcoBadZukLFEc/export?format=pdf" target="_blank" rel="noopener">Download Full Report ↓</a>
+        <div class="meta"><span>Case: <b>INVG-2025-002</b></span><span>Dated: <b>28 Jul 2025</b></span><span>Chain: <b>Solana</b></span></div>
+      </div>
+
+    </article>
+
+    <aside class="toc" aria-label="On this page">
+      <h5>Contents</h5>
+      <a href="#the-flow">The Flow</a>
+      <a href="#the-cold-wallet">Step 1 — Cold Wallet</a>
+      <a href="#the-distribution">Step 2 — Distribution</a>
+      <a href="#a-named-recipient">Step 3 — Named Recipient</a>
+      <a href="#why-this-matters">Why It Matters</a>
+    </aside>
+  </div>
+</section>
+
+<section class="related">
+  <div class="wrap">
+    <h4>Continue reading</h4>
+    <div class="rel-grid">
+      <a class="rel-card" href="article-luckio-provably-fair.html">
+        <span class="rel-id">CASE FILE INVG-2025-001</span>
+        <h5>Is Luck.io Actually Fair? A Plain-Language Look At Its Core Claims</h5>
+        <p>Same platform, different question. Luck.io says it's non-custodial and provably fair. Here's what a proper look at those two claims reveals.</p>
+      </a>
+      <a class="rel-card" href="article-rollbit-kyc.html">
+        <span class="rel-id">CASE FILE INVG-2025-004</span>
+        <h5>KYC On Demand: How Rollbit Applies Its Own Rules Only When It Suits The House</h5>
+        <p>Rollbit's Terms &amp; Conditions demand full KYC before you wager. In practice, it's enforced when it helps the house.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div><a href="index.html" class="logo"><span class="dot"></span>INVESTIGATAH</a><p>Specialized blockchain forensics and asset recovery agency. Dedicated to justice within the digital ecosystem.</p></div>
+    <div><h4>Navigate</h4><ul><li><a href="index.html">Home</a></li><li><a href="work.html">Work</a></li><li><a href="articles.html">Articles</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div><h4>Capabilities</h4><ul><li><a href="index.html">On-Chain Tracing</a></li><li><a href="work.html">Platform Investigations</a></li><li><a href="contact.html">Asset Recovery</a></li></ul></div>
+  </div>
+  <div class="wrap foot-base"><span>© 2026 INVESTIGATAH — ALL RIGHTS RESERVED</span><span>ritix@investigatah.com</span></div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+const bar=document.getElementById('progress');
+addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-innerHeight;bar.style.width=Math.min(100,(scrollY/h)*100)+'%'});
+const toc=document.querySelectorAll('.toc a'),heads=[...document.querySelectorAll('.art-prose h2')];
+const so=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){const id=e.target.id;toc.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+id))}})},{rootMargin:'-30% 0px -65% 0px'});
+heads.forEach(h=>so.observe(h));
+</script>
+</body>
+</html>
