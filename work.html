@@ -414,68 +414,6 @@ footer{border-top:1px solid var(--rule);padding:56px 0 44px}
 
     <div class="cases">
 
-      <!-- ============ Rollbit influencer funding ============ -->
-      <article class="case" data-groups="onchain" id="rollbit-influencer-funding">
-        <header class="case-head">
-          <div><span>On-chain tracing</span><span>Ethereum · Solana</span></div>
-          <div><span>Covers <b>Dec 2021 – 2024</b></span></div>
-        </header>
-        <div class="case-body">
-          <div class="case-main">
-            <p class="platform">Rollbit</p>
-            <h3>Casino-funded influencer wallets</h3>
-            <p class="question">Were the streamers and influencers promoting Rollbit betting their own money, or the casino's?</p>
-            <p class="tldr">I mapped 15+ wallets around a high-profile streamer. Deposits he presented as his own purchases came from Rollbit's hot wallet minutes earlier, and went straight back to the casino.</p>
-            <div class="stats">
-              <div class="stat"><span class="num">350.9 ETH</span><span class="lbl">Sent by the casino 5 minutes before a stream</span></div>
-              <div class="stat"><span class="num">15+</span><span class="lbl">Wallets mapped around one streamer</span></div>
-              <div class="stat"><span class="num">~$90M</span><span class="lbl">ETH moved from casino hot wallets to exchange deposits</span></div>
-            </div>
-          </div>
-          <aside class="chainwrap" aria-label="Evidence chain">
-            <span class="aside-lbl">Evidence chain</span>
-            <ol class="chain">
-              <li class="node"><b>Rollbit hot wallet</b><span class="addr">0xCBD6…75ac</span></li>
-              <li class="edge">350.915 ETH · 5 min before stream</li>
-              <li class="node"><b>Streamer exchange deposit</b><span class="addr">0x24AF…7dC7</span></li>
-              <li class="edge">Deposited to casino</li>
-              <li class="node"><b>Streamer casino deposit</b><span class="addr">0xd267…ebB7</span></li>
-            </ol>
-            <p class="chain-note">21 Dec 2021. The streamer went live showing a ~$1M Rollbit balance minutes after this transfer.</p>
-          </aside>
-        </div>
-        <details class="more">
-          <summary>Findings, method and deliverable</summary>
-          <div class="more-grid">
-            <div>
-              <h4>Findings</h4>
-              <ul class="findings">
-                <li><span class="tag t-det">Deterministic</span><p>Rollbit's hot wallet sent 350.915 ETH to the streamer's exchange deposit address five minutes before he went live showing a ~$1M balance.<span class="src">Transfer history, stream time</span></p></li>
-                <li><span class="tag t-det">Deterministic</span><p>86.9 ETH arrived from the casino 27 minutes before he posted that he had personally bought ~$170K of ETH. The ETH then went back to Rollbit.<span class="src">Transfer history, archived post</span></p></li>
-                <li><span class="tag t-heur">Heuristic</span><p>The repeated timing fits sponsored play money presented as personal funds.<span class="src">Pattern across events</span></p></li>
-                <li><span class="tag t-det">Deterministic</span><p>Casino hot wallets held ~$10M of ETH while ~$90M had been sent to two exchange deposit addresses.<span class="src">Balances and outflows</span></p></li>
-                <li><span class="tag t-prob">Probabilistic</span><p>A second influencer (280K followers) bought RLB, deposited it to his own casino deposit address, withdrew to a fresh wallet and sold. At least 9 transfers (30,000 SOL) from the selling wallet back to that unique deposit address tie both wallets to him.<span class="src">Deposit-address reuse</span></p></li>
-                <li><span class="tag t-rep">Reported</span><p>He was publicly accused of selling ~45M RLB (~$3M at peak) while promoting it.<span class="src">Public allegation</span></p></li>
-              </ul>
-            </div>
-            <div>
-              <h4>How I worked</h4>
-              <ol class="method">
-                <li>Labelled Rollbit's main hot wallet and the streamer's exchange and casino deposit addresses.</li>
-                <li>Matched his public posts and stream start times against transfer timestamps.</li>
-                <li>Followed every deposit forward to see where the funds ended up.</li>
-                <li>Compared what the casino hot wallets hold with what they sent to exchange deposit addresses.</li>
-                <li>Reviewed a public pump-and-dump allegation against a second influencer and mapped its four-wallet loop.</li>
-              </ol>
-              <h4>Delivered</h4>
-              <p>Evidence pack with transaction hashes, timestamped screenshots and a fund-flow graph, written so a non-technical reader can follow each step. The findings were published as part of a public report.</p>
-              <p class="tools"><span>Sources and tools</span>Arkham · Etherscan · Solscan · Archived posts</p>
-              <p class="withheld">Streamer and influencer names withheld in this summary.</p>
-            </div>
-          </div>
-        </details>
-      </article>
-
       <!-- ============ Gambling ownership network ============ -->
       <article class="case" data-groups="osint dd" id="gambling-network">
         <header class="case-head">
@@ -537,6 +475,68 @@ footer{border-top:1px solid var(--rule);padding:56px 0 44px}
               <p>Network map linking person → companies → sites → AI app, with a source for every link.</p>
               <p class="tools"><span>Sources and tools</span>Company registries · Domain records · Wayback Machine · App stores · WIPO records</p>
               <p class="withheld">Personal name, birth date and residence withheld in this summary.</p>
+            </div>
+          </div>
+        </details>
+      </article>
+
+      <!-- ============ Rollbit influencer funding ============ -->
+      <article class="case" data-groups="onchain" id="rollbit-influencer-funding">
+        <header class="case-head">
+          <div><span>On-chain tracing</span><span>Ethereum · Solana</span></div>
+          <div><span>Covers <b>Dec 2021 – 2024</b></span></div>
+        </header>
+        <div class="case-body">
+          <div class="case-main">
+            <p class="platform">Rollbit</p>
+            <h3>Casino-funded influencer wallets</h3>
+            <p class="question">Were the streamers and influencers promoting Rollbit betting their own money, or the casino's?</p>
+            <p class="tldr">I mapped 15+ wallets around a high-profile streamer. Deposits he presented as his own purchases came from Rollbit's hot wallet minutes earlier, and went straight back to the casino.</p>
+            <div class="stats">
+              <div class="stat"><span class="num">350.9 ETH</span><span class="lbl">Sent by the casino 5 minutes before a stream</span></div>
+              <div class="stat"><span class="num">15+</span><span class="lbl">Wallets mapped around one streamer</span></div>
+              <div class="stat"><span class="num">~$90M</span><span class="lbl">ETH moved from casino hot wallets to exchange deposits</span></div>
+            </div>
+          </div>
+          <aside class="chainwrap" aria-label="Evidence chain">
+            <span class="aside-lbl">Evidence chain</span>
+            <ol class="chain">
+              <li class="node"><b>Rollbit hot wallet</b><span class="addr">0xCBD6…75ac</span></li>
+              <li class="edge">350.915 ETH · 5 min before stream</li>
+              <li class="node"><b>Streamer exchange deposit</b><span class="addr">0x24AF…7dC7</span></li>
+              <li class="edge">Deposited to casino</li>
+              <li class="node"><b>Streamer casino deposit</b><span class="addr">0xd267…ebB7</span></li>
+            </ol>
+            <p class="chain-note">21 Dec 2021. The streamer went live showing a ~$1M Rollbit balance minutes after this transfer.</p>
+          </aside>
+        </div>
+        <details class="more">
+          <summary>Findings, method and deliverable</summary>
+          <div class="more-grid">
+            <div>
+              <h4>Findings</h4>
+              <ul class="findings">
+                <li><span class="tag t-det">Deterministic</span><p>Rollbit's hot wallet sent 350.915 ETH to the streamer's exchange deposit address five minutes before he went live showing a ~$1M balance.<span class="src">Transfer history, stream time</span></p></li>
+                <li><span class="tag t-det">Deterministic</span><p>86.9 ETH arrived from the casino 27 minutes before he posted that he had personally bought ~$170K of ETH. The ETH then went back to Rollbit.<span class="src">Transfer history, archived post</span></p></li>
+                <li><span class="tag t-heur">Heuristic</span><p>The repeated timing fits sponsored play money presented as personal funds.<span class="src">Pattern across events</span></p></li>
+                <li><span class="tag t-det">Deterministic</span><p>Casino hot wallets held ~$10M of ETH while ~$90M had been sent to two exchange deposit addresses.<span class="src">Balances and outflows</span></p></li>
+                <li><span class="tag t-prob">Probabilistic</span><p>A second influencer (280K followers) bought RLB, deposited it to his own casino deposit address, withdrew to a fresh wallet and sold. At least 9 transfers (30,000 SOL) from the selling wallet back to that unique deposit address tie both wallets to him.<span class="src">Deposit-address reuse</span></p></li>
+                <li><span class="tag t-rep">Reported</span><p>He was publicly accused of selling ~45M RLB (~$3M at peak) while promoting it.<span class="src">Public allegation</span></p></li>
+              </ul>
+            </div>
+            <div>
+              <h4>How I worked</h4>
+              <ol class="method">
+                <li>Labelled Rollbit's main hot wallet and the streamer's exchange and casino deposit addresses.</li>
+                <li>Matched his public posts and stream start times against transfer timestamps.</li>
+                <li>Followed every deposit forward to see where the funds ended up.</li>
+                <li>Compared what the casino hot wallets hold with what they sent to exchange deposit addresses.</li>
+                <li>Reviewed a public pump-and-dump allegation against a second influencer and mapped its four-wallet loop.</li>
+              </ol>
+              <h4>Delivered</h4>
+              <p>Evidence pack with transaction hashes, timestamped screenshots and a fund-flow graph, written so a non-technical reader can follow each step. The findings were published as part of a public report.</p>
+              <p class="tools"><span>Sources and tools</span>Arkham · Etherscan · Solscan · Archived posts</p>
+              <p class="withheld">Streamer and influencer names withheld in this summary.</p>
             </div>
           </div>
         </details>
