@@ -7,7 +7,7 @@
 <meta name="description" content="Selected blockchain and OSINT investigations by INVESTIGATAH. Fund tracing, founder attribution and platform due diligence, with every finding carrying a confidence grade and the source it rests on.">
 <meta name="keywords" content="blockchain investigator, on-chain tracing, OSINT attribution, crypto casino due diligence, fund tracing, crypto investigation case files, rollbit, luck.io, betbolt, skin.club">
 <meta name="robots" content="index, follow, max-image-preview:large">
-<meta name="theme-color" content="#040705">
+<meta name="theme-color" content="#F5F4F1">
 <link rel="canonical" href="https://www.investigatah.com/work.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="INVESTIGATAH">
@@ -18,8 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23040705'/><circle cx='16' cy='16' r='7' fill='none' stroke='%2300ff66' stroke-width='2.4'/><circle cx='16' cy='16' r='2.4' fill='%2300ff66'/></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23F5F4F1'/><circle cx='16' cy='16' r='7' fill='none' stroke='%230A6E3D' stroke-width='2.4'/><circle cx='16' cy='16' r='2.4' fill='%230A6E3D'/></svg>">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"CollectionPage","name":"Case Files","url":"https://www.investigatah.com/work.html","description":"Selected blockchain and OSINT investigations with evidence-graded findings.","isPartOf":{"@type":"WebSite","name":"INVESTIGATAH","url":"https://www.investigatah.com"},"about":{"@type":"Person","name":"Ritik Jain","jobTitle":"Blockchain and OSINT Investigator","email":"ritix@investigatah.com","worksFor":{"@type":"Organization","name":"INVESTIGATAH"},"url":"https://www.investigatah.com/about.html"},"mainEntity":{"@type":"ItemList","itemListElement":[
 {"@type":"ListItem","position":1,"item":{"@type":"Report","name":"Provably Fair or Provably Centralized? Investigating Luck.io's Core Claims","reportNumber":"INVG-2025-001","url":"https://docs.google.com/document/d/1n3FgDfK1hiWsM2eEdIh3sogpQdDOc44ptoclfhFoRqM/export?format=pdf","author":{"@type":"Organization","name":"INVESTIGATAH"}}},
@@ -30,230 +29,315 @@
 </script>
 <style>
 /* ============================================================
-   WORK / CASE FILES — page-scoped components.
-   Every new class is cf-* prefixed so nothing here can collide
-   with the shared css/style.css used by the other 7 pages.
-   Brand tokens (--neon, --panel, --font-d/b/m ...) and the
-   existing .dossier / .doss-top / .doss-body / .custody-grid /
-   .cta-band / .btn / .eyebrow / .rv components are inherited.
+   WORK / CASE FILES — clean off-white.
+
+   This page is deliberately self-contained: it does NOT load
+   css/style.css. That stylesheet is dark-first (near-black ground,
+   neon green, grain + grid overlays, glow shadows) and this page is
+   light, so loading it would mean overriding ~60 rules and fighting
+   the cascade on every component. Brand continuity is carried by the
+   same three typefaces instead, and the neon green is translated to
+   a deep green that is legible on paper.
+
+   Nothing here can affect the other 7 pages.
    ============================================================ */
 
-[id]{scroll-margin-top:100px}
+:root{
+  --paper:#F5F4F1;
+  --card:#FFFFFF;
+  --card-2:#FAF9F6;
+  --ink:#15181B;
+  --ink-2:#2E3338;
+  --muted:#5F666D;
+  --faint:#676E75;
+  --rule:#E3E0DA;
+  --rule-2:#EDEBE5;
+  --accent:#0A6E3D;
 
-/* ---------- CONFIDENCE GRADING ----------
-   Four tiers, each its own hue, so a reader can tell proven from
-   inferred at a glance. Deterministic takes the brand neon (highest
-   confidence); the other three stay deliberately distinct rather than
-   collapsing into one colour. */
-.cf-t-det {--g:#00ff66}
-.cf-t-prob{--g:#5aa9ff}
-.cf-t-heur{--g:#c08cff}
-.cf-t-rep {--g:#f0a63a}
-.cf-tag{
-  display:inline-block;font-family:var(--font-m);font-size:9.5px;font-weight:500;
-  letter-spacing:.17em;text-transform:uppercase;white-space:nowrap;line-height:1;
-  padding:5px 9px 4px;border:1px solid var(--g);color:var(--g);
-  background:color-mix(in srgb, var(--g) 10%, transparent);
+  /* confidence tiers — each its own hue, all legible on paper */
+  --det:#0A6E3D;
+  --prob:#1F4FA8;
+  --heur:#6B3FA0;
+  --rep:#8A5A00;
+
+  --f-d:'Bricolage Grotesque', sans-serif;
+  --f-b:'Hanken Grotesk', sans-serif;
+  --f-m:'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
 }
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--f-b);
+  font-size:16.5px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+ul,ol{list-style:none}
+::selection{background:var(--accent);color:#fff}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+[id]{scroll-margin-top:92px}
+
+.wrap{max-width:1120px;margin:0 auto;padding:0 32px}
+h1,h2,h3,h4{font-family:var(--f-d);font-weight:600;line-height:1.14;letter-spacing:-.021em;text-wrap:balance}
+
+.eyebrow{
+  display:inline-block;font-family:var(--f-m);font-size:10.5px;font-weight:500;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;
+}
+
+/* ---------- NAV ---------- */
+.nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(245,244,241,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--rule);
+}
+.nav-in{max-width:1120px;margin:0 auto;padding:0 32px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{font-family:var(--f-d);font-size:15px;font-weight:700;letter-spacing:.12em;display:flex;align-items:center;gap:10px;color:var(--ink)}
+.logo .dot{width:8px;height:8px;background:var(--accent);border-radius:50%;flex-shrink:0}
+.nav-links{display:flex;gap:30px;align-items:center}
+.nav-links a{font-family:var(--f-m);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);transition:color .2s}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a.active{color:var(--ink);font-weight:500}
+.nav-cta{border:1px solid var(--ink);color:var(--ink)!important;padding:9px 18px;border-radius:2px;transition:background .2s,color .2s}
+.nav-cta:hover{background:var(--ink);color:var(--paper)!important}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:7px}
+.burger span{width:22px;height:1.5px;background:var(--ink);display:block}
 
 /* ---------- HERO ---------- */
-.cf-hero-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:56px;align-items:start;margin-top:44px}
-.cf-role{font-family:var(--font-m);font-size:11.5px;letter-spacing:.17em;text-transform:uppercase;color:var(--neon);margin-bottom:22px;line-height:1.6}
-.cf-thesis{font-family:var(--font-d);font-size:clamp(19px,2.1vw,25px);font-weight:500;line-height:1.35;letter-spacing:-.015em;color:var(--txt);max-width:34ch;margin-bottom:16px}
-.cf-facts{display:flex;flex-wrap:wrap;gap:16px 44px;margin-top:36px;padding-top:28px;border-top:1px solid var(--line)}
-.cf-facts li{display:flex;flex-direction:column;gap:4px}
-.cf-facts b{font-family:var(--font-d);font-size:30px;font-weight:700;line-height:1;color:var(--neon);text-shadow:0 0 16px var(--neon-glow);font-variant-numeric:tabular-nums}
-.cf-facts span{font-family:var(--font-m);font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--txt-dim)}
+.hero{padding:76px 0 58px}
+.hero h1{font-size:clamp(40px,6vw,70px);font-weight:700;line-height:1.02;letter-spacing:-.028em;max-width:13ch}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:56px;align-items:start;margin-top:40px}
+.role{font-family:var(--f-m);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;line-height:1.7}
+.thesis{font-family:var(--f-d);font-size:clamp(20px,2.2vw,26px);font-weight:500;line-height:1.3;letter-spacing:-.018em;max-width:30ch;margin-bottom:16px}
+.lede{color:var(--muted);font-size:16.5px;line-height:1.7;max-width:56ch}
+.facts{display:flex;flex-wrap:wrap;gap:20px 46px;margin-top:38px;padding-top:28px;border-top:1px solid var(--rule)}
+.facts li{display:flex;flex-direction:column;gap:2px}
+.facts b{font-family:var(--f-d);font-size:30px;font-weight:700;line-height:1.05;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.facts span{font-family:var(--f-m);font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:var(--faint)}
 
-/* one worked example, up front */
-.cf-exhibit{border:1px solid var(--line);background:linear-gradient(180deg,var(--panel),var(--ink-2));padding:32px 28px 26px;position:relative;margin:0}
-.cf-exhibit::before{
-  content:"EXHIBIT A";position:absolute;top:-10px;left:24px;background:var(--neon);color:var(--ink);
-  font-family:var(--font-m);font-size:10px;font-weight:500;letter-spacing:.22em;padding:4px 10px;
+/* the one worked example, up front */
+.exhibit{background:var(--card);border:1px solid var(--rule);border-radius:4px;padding:28px 26px 24px;position:relative;margin:0}
+.exhibit::before{
+  content:"EXHIBIT A";position:absolute;top:-9px;left:22px;background:var(--accent);color:#fff;
+  font-family:var(--f-m);font-size:9.5px;font-weight:500;letter-spacing:.18em;padding:4px 9px;border-radius:2px;
 }
-.cf-exhibit h2{font-family:var(--font-d);font-size:20px;font-weight:600;line-height:1.25;letter-spacing:-.02em;margin:12px 0 10px}
-.cf-cap{font-size:14.5px;color:var(--txt-dim);line-height:1.6;margin-bottom:24px}
-.cf-verdicts{margin-top:22px;padding-top:20px;border-top:1px dashed var(--line);display:flex;flex-direction:column;gap:13px}
-.cf-verdicts div{display:flex;gap:11px;align-items:flex-start;font-size:13.5px;color:var(--txt-dim);line-height:1.55}
+.exhibit .kicker{font-family:var(--f-m);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
+.exhibit h2{font-size:19px;font-weight:600;line-height:1.26;margin:10px 0 9px}
+.exhibit .cap{font-size:14.5px;color:var(--muted);line-height:1.6;margin-bottom:22px}
+.verdicts{margin-top:20px;padding-top:18px;border-top:1px solid var(--rule-2);display:flex;flex-direction:column;gap:12px}
+.verdicts div{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--muted);line-height:1.55}
+
+/* ---------- CONFIDENCE TAGS ---------- */
+.tag{
+  display:inline-block;font-family:var(--f-m);font-size:9.5px;font-weight:500;line-height:1;
+  letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;
+  padding:5px 8px 4px;border:1px solid currentColor;border-radius:2px;
+}
+.t-det{color:var(--det)} .t-prob{color:var(--prob)} .t-heur{color:var(--heur)} .t-rep{color:var(--rep)}
 
 /* ---------- EVIDENCE CHAIN ---------- */
-.cf-chain{list-style:none;display:flex;flex-direction:column}
-.cf-node{border:1px solid var(--line);background:var(--panel-2);padding:11px 13px;display:flex;flex-direction:column;gap:3px}
-.cf-node b{font-family:var(--font-b);font-weight:600;font-size:14px;line-height:1.3;color:var(--txt)}
-.cf-addr{font-family:var(--font-m);font-size:11px;letter-spacing:.04em;color:var(--txt-faint);word-break:break-all}
-.cf-edge{position:relative;padding:10px 0 10px 28px;font-family:var(--font-m);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--neon);line-height:1.45}
-.cf-edge::before{content:"";position:absolute;left:13px;top:0;bottom:7px;border-left:1px solid var(--neon);opacity:.55}
-.cf-edge::after{content:"";position:absolute;left:9.5px;bottom:1px;border:4px solid transparent;border-top:6px solid var(--neon)}
-.cf-chainwrap{border-left:1px solid var(--line);padding-left:30px;display:flex;flex-direction:column;gap:13px;min-width:0}
-.cf-aside-lbl{font-family:var(--font-m);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--txt-faint)}
-.cf-chain-note{font-size:13px;color:var(--txt-dim);line-height:1.6;margin:2px 0 0}
+.chain{display:flex;flex-direction:column}
+.chain .node{border:1px solid var(--rule);background:var(--card-2);border-radius:3px;padding:9px 12px;display:flex;flex-direction:column;gap:2px}
+.chain .node b{font-family:var(--f-b);font-weight:600;font-size:14px;line-height:1.3;color:var(--ink)}
+.chain .addr{font-family:var(--f-m);font-size:11px;color:var(--faint);word-break:break-all}
+.chain .edge{position:relative;padding:8px 0 8px 26px;font-family:var(--f-m);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--accent);line-height:1.45}
+.chain .edge::before{content:"";position:absolute;left:12px;top:0;bottom:6px;border-left:1.5px solid var(--accent);opacity:.45}
+.chain .edge::after{content:"";position:absolute;left:8.2px;bottom:1px;border:4px solid transparent;border-top:6px solid var(--accent);opacity:.75}
+.chainwrap{display:flex;flex-direction:column;gap:11px;min-width:0}
+.aside-lbl{font-family:var(--f-m);font-size:10px;letter-spacing:.17em;text-transform:uppercase;color:var(--faint)}
+.chain-note{font-size:13px;color:var(--muted);line-height:1.6;margin-top:2px}
 
-/* ---------- FILTER BAR ---------- */
-.cf-filterbar{display:flex;justify-content:space-between;align-items:center;gap:18px 28px;flex-wrap:wrap;margin-top:34px}
-.cf-filters{display:flex;flex-wrap:wrap;gap:9px}
-.cf-filters button{
-  font-family:var(--font-m);font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;
-  color:var(--txt-dim);background:transparent;border:1px solid var(--line);
-  padding:9px 16px;cursor:pointer;transition:border-color .25s,color .25s,background .25s;
+/* ---------- SECTIONS ---------- */
+section{padding:84px 0}
+.band{background:var(--card);border-block:1px solid var(--rule)}
+.sec-head{margin-bottom:36px}
+.sec-head h2{font-size:clamp(26px,3.4vw,40px);font-weight:700;letter-spacing:-.025em;line-height:1.08;margin-bottom:12px}
+.sec-head p{color:var(--muted);max-width:60ch;font-size:16px}
+
+/* ---------- FILTERS ---------- */
+.filterbar{display:flex;justify-content:space-between;align-items:center;gap:16px 28px;flex-wrap:wrap;margin-bottom:8px}
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.filters button{
+  font-family:var(--f-b);font-size:14px;font-weight:500;color:var(--ink);
+  background:transparent;border:1px solid var(--rule);padding:8px 16px;border-radius:999px;
+  cursor:pointer;transition:border-color .2s,background .2s,color .2s;
 }
-.cf-filters button:hover{border-color:var(--txt-dim);color:var(--txt)}
-.cf-filters button[aria-pressed="true"]{background:var(--neon);border-color:var(--neon);color:var(--ink);box-shadow:0 0 20px var(--neon-glow)}
-.cf-count{font-family:var(--font-m);font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--txt-faint)}
+.filters button:hover{border-color:var(--ink)}
+.filters button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.count{font-family:var(--f-m);font-size:12px;color:var(--faint)}
 
-/* ---------- CASE CARD ---------- */
-.cf-list{padding:32px 0 10px;display:flex;flex-direction:column;gap:30px}
-.cf-case[hidden]{display:none!important}
-.cf-case .doss-body{grid-template-columns:minmax(0,1fr) 320px}
-.cf-platform{font-family:var(--font-m);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--neon-dim);margin-bottom:10px}
-.cf-case h3{font-family:var(--font-d);font-size:clamp(21px,2.3vw,27px);font-weight:600;line-height:1.16;letter-spacing:-.02em;margin-bottom:14px}
-.cf-q{font-size:15px;color:var(--txt-dim);font-style:italic;line-height:1.6;margin-bottom:14px;max-width:62ch}
-.cf-tldr{font-size:15.5px;line-height:1.7;color:var(--txt);max-width:64ch}
-.cf-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:24px}
-.cf-stats > div{background:#060c09;padding:16px 18px;min-width:0}
-.cf-num{font-family:var(--font-d);font-size:21px;font-weight:700;color:var(--neon);text-shadow:0 0 14px var(--neon-glow);line-height:1.05;margin-bottom:7px;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
-.cf-lbl{font-family:var(--font-m);font-size:9.5px;letter-spacing:.14em;color:var(--txt-dim);text-transform:uppercase;line-height:1.45}
-
-/* case expander */
-.cf-more{border-top:1px solid var(--line);background:#050a07}
-.cf-more summary{
-  cursor:pointer;padding:16px 34px;list-style:none;display:flex;align-items:center;gap:12px;
-  font-family:var(--font-m);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--txt-dim);transition:color .25s;
+/* ---------- CASE ---------- */
+.cases{display:flex;flex-direction:column;gap:22px;margin-top:26px}
+.case{background:var(--card);border:1px solid var(--rule);border-radius:5px;overflow:hidden}
+.case[hidden]{display:none!important}
+.case-head{
+  display:flex;justify-content:space-between;gap:10px 24px;flex-wrap:wrap;
+  padding:12px 26px;border-bottom:1px solid var(--rule-2);background:var(--card-2);
+  font-family:var(--f-m);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);
 }
-.cf-more summary::-webkit-details-marker{display:none}
-.cf-more summary::before{content:"+";color:var(--neon);font-size:15px;width:12px;line-height:1}
-.cf-more[open] summary::before{content:"\2212"}
-.cf-more summary:hover{color:var(--neon)}
-.cf-more-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:40px;padding:6px 34px 30px}
-.cf-more h4{font-family:var(--font-m);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--txt-faint);font-weight:400;margin:0 0 14px}
-.cf-more h4:not(:first-child){margin-top:26px}
-.cf-more p{font-size:14.5px;line-height:1.65;color:var(--txt-dim)}
-.cf-findings{display:flex;flex-direction:column;gap:14px}
-.cf-findings li{display:grid;grid-template-columns:116px minmax(0,1fr);gap:14px;align-items:start}
-.cf-findings p{margin:0}
-.cf-src{display:block;font-family:var(--font-m);font-size:10.5px;letter-spacing:.1em;color:var(--txt-faint);margin-top:5px}
-.cf-method{margin:0;padding-left:21px;font-size:14.5px;line-height:1.65;color:var(--txt-dim);list-style:decimal}
-.cf-method li{margin-bottom:6px}
-.cf-method li::marker{color:var(--neon-dim);font-family:var(--font-m);font-size:12px}
-.cf-tools{font-family:var(--font-m);font-size:12px;letter-spacing:.04em;color:var(--txt-dim);margin-top:16px}
-.cf-tools span{display:block;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--txt-faint);margin-bottom:5px}
-.cf-withheld{font-size:12.5px!important;color:var(--txt-faint)!important;border-left:2px solid var(--neon-dim);padding-left:12px;margin-top:18px}
+.case-head b{color:var(--ink-2);font-weight:500}
+.case-head .pub{color:var(--accent)}
+.case-head > div{display:flex;gap:10px 22px;flex-wrap:wrap}
+.case-body{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:40px;padding:28px 26px}
+.case-main{min-width:0}
+.platform{font-family:var(--f-m);font-size:11px;letter-spacing:.17em;text-transform:uppercase;color:var(--accent);margin-bottom:9px}
+.case h3{font-size:clamp(21px,2.4vw,27px);font-weight:700;line-height:1.14;letter-spacing:-.025em;margin-bottom:12px}
+.question{font-size:15.5px;color:var(--muted);font-style:italic;line-height:1.6;margin-bottom:12px;max-width:60ch}
+.tldr{font-size:16px;line-height:1.7;max-width:62ch}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:24px;padding-top:20px;border-top:1px solid var(--rule-2)}
+.stat{display:flex;flex-direction:column;gap:4px;min-width:0}
+.stat .num{font-family:var(--f-d);font-size:25px;font-weight:700;line-height:1.05;letter-spacing:-.022em;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.stat .lbl{font-size:12.5px;line-height:1.4;color:var(--muted)}
 
-/* report links pinned to a case that was published formally */
-.cf-published{
-  padding:18px 34px;background:#050a07;border-top:1px solid var(--line);
-  display:flex;gap:16px;align-items:center;flex-wrap:wrap;
+/* expander */
+.more{border-top:1px solid var(--rule-2)}
+.more summary{
+  cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px;padding:14px 26px;
+  font-size:14.5px;font-weight:600;color:var(--ink);transition:color .2s;
 }
-.cf-published .cf-pub-no{font-family:var(--font-m);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--txt-faint)}
-.cf-published .cf-pub-no b{color:var(--neon);font-weight:400}
-.cf-published a{
-  font-family:var(--font-m);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
-  display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border:1px solid var(--line);
-  color:var(--txt);transition:border-color .25s,color .25s,background .25s,box-shadow .25s;
-}
-.cf-published a:hover{border-color:var(--txt-dim);color:var(--txt)}
-.cf-published a.primary{border-color:var(--neon);color:var(--neon)}
-.cf-published a.primary:hover{background:var(--neon);color:var(--ink);box-shadow:0 0 22px var(--neon-glow)}
+.more summary::-webkit-details-marker{display:none}
+.more summary::before{content:"+";font-family:var(--f-m);font-size:16px;color:var(--accent);width:13px;line-height:1}
+.more[open] summary::before{content:"\2212"}
+.more summary:hover{color:var(--accent)}
+.more-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:38px;padding:4px 26px 28px}
+.more h4{font-family:var(--f-m);font-size:10px;font-weight:500;letter-spacing:.17em;text-transform:uppercase;color:var(--faint);margin:0 0 12px}
+.more h4:not(:first-child){margin-top:24px}
+.more p{font-size:15px;line-height:1.65;color:var(--ink-2)}
+.findings{display:flex;flex-direction:column;gap:13px}
+.findings li{display:grid;grid-template-columns:114px minmax(0,1fr);gap:13px;align-items:start}
+.findings p{margin:0}
+.src{display:block;font-family:var(--f-m);font-size:11px;color:var(--faint);margin-top:4px}
+.method{margin:0;padding-left:19px;font-size:15px;line-height:1.65;color:var(--ink-2);list-style:decimal}
+.method li{margin-bottom:6px}
+.method li::marker{color:var(--accent);font-family:var(--f-m);font-size:12.5px}
+.tools{font-family:var(--f-m);font-size:12.5px;color:var(--muted);margin-top:14px;line-height:1.6}
+.tools span{display:block;font-size:10px;letter-spacing:.17em;text-transform:uppercase;color:var(--faint);margin-bottom:4px}
+.withheld{font-size:13px!important;color:var(--muted)!important;border-left:2px solid var(--rule);padding-left:11px;margin-top:16px}
 
-/* ---------- GENERIC SECTION ---------- */
-.cf-sec{padding:86px 0;border-top:1px solid var(--line)}
-.cf-sec-head{margin-bottom:38px}
-.cf-sec-head h2{font-family:var(--font-d);font-size:clamp(26px,3.4vw,42px);font-weight:600;letter-spacing:-.022em;line-height:1.1;margin-bottom:14px}
-.cf-sec-head p{color:var(--txt-dim);font-size:16px;line-height:1.65;max-width:62ch}
+/* published-report strip on a case */
+.published{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:16px 26px;border-top:1px solid var(--rule-2);background:var(--card-2)}
+.pub-no{font-family:var(--f-m);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--faint)}
+.pub-no b{color:var(--accent);font-weight:500}
 
-/* ---------- PUBLISHED REPORTS ---------- */
-.cf-reports{margin:0}
-.cf-reports li{display:grid;grid-template-columns:168px minmax(0,1fr);gap:24px;padding:26px 0;border-top:1px solid var(--line-dim)}
-.cf-reports li:last-child{border-bottom:1px solid var(--line-dim)}
-.cf-rep-no{font-family:var(--font-m);font-size:11px;letter-spacing:.17em;text-transform:uppercase;color:var(--neon);line-height:1.8}
-.cf-reports h3{font-family:var(--font-d);font-size:19px;font-weight:600;line-height:1.3;letter-spacing:-.015em;margin-bottom:10px}
-.cf-reports p{font-size:14.5px;color:var(--txt-dim);line-height:1.65;max-width:66ch;margin-bottom:16px}
-.cf-rep-links{display:flex;gap:10px;flex-wrap:wrap}
-.cf-rep-links a{
-  font-family:var(--font-m);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
-  display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border:1px solid var(--line);
-  color:var(--txt);transition:border-color .25s,color .25s,background .25s,box-shadow .25s;
+/* shared small button */
+.lnk{
+  display:inline-flex;align-items:center;gap:7px;font-family:var(--f-b);font-size:13.5px;font-weight:600;
+  padding:9px 15px;border:1px solid var(--rule);border-radius:2px;color:var(--ink);
+  transition:border-color .2s,background .2s,color .2s;
 }
-.cf-rep-links a:hover{border-color:var(--txt-dim)}
-.cf-rep-links a.primary{border-color:var(--neon);color:var(--neon)}
-.cf-rep-links a.primary:hover{background:var(--neon);color:var(--ink);box-shadow:0 0 22px var(--neon-glow)}
+.lnk:hover{border-color:var(--ink)}
+.lnk.primary{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.lnk.primary:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+
+/* ---------- REPORTS ---------- */
+.reports li{display:grid;grid-template-columns:160px minmax(0,1fr);gap:24px;padding:26px 0;border-top:1px solid var(--rule)}
+.reports li:last-child{border-bottom:1px solid var(--rule)}
+.rep-no{font-family:var(--f-m);font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);line-height:1.7}
+.rep-date{display:block;color:var(--faint);letter-spacing:.1em}
+.reports h3{font-size:19px;font-weight:600;line-height:1.3;margin-bottom:9px}
+.reports p{font-size:15px;color:var(--muted);line-height:1.65;max-width:64ch;margin-bottom:15px}
+.rep-links{display:flex;gap:9px;flex-wrap:wrap}
 
 /* ---------- METHOD ---------- */
-.custody-grid .cf-tag + p{margin-top:13px}
-.cf-steps{list-style:none;counter-reset:s;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px 36px;margin-top:44px}
-.cf-steps li{counter-increment:s;padding-top:16px;border-top:1px solid var(--line);min-width:0}
-.cf-steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--font-m);font-size:10.5px;letter-spacing:.2em;color:var(--neon)}
-.cf-steps b{display:block;font-family:var(--font-d);font-size:17px;font-weight:600;margin:8px 0 8px;line-height:1.25}
-.cf-steps span{font-size:14px;color:var(--txt-dim);line-height:1.6}
+.grade{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.grade div{background:var(--card);border:1px solid var(--rule);border-radius:4px;padding:20px}
+.grade p{margin-top:12px;font-size:14.5px;color:var(--muted);line-height:1.6}
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px 34px;margin-top:44px}
+.steps li{counter-increment:s;padding-top:15px;border-top:1px solid var(--rule)}
+.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--f-m);font-size:11px;letter-spacing:.14em;color:var(--accent)}
+.steps b{display:block;font-family:var(--f-d);font-size:17.5px;font-weight:600;letter-spacing:-.015em;margin:7px 0 7px;line-height:1.25}
+.steps span{font-size:14.5px;color:var(--muted);line-height:1.6}
 
-/* ---------- SERVICES / TOOLKIT / TIMELINE ---------- */
-.cf-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:56px}
-.cf-two .cf-sec-head{margin-bottom:22px}
-.cf-two .cf-sec-head h2{font-size:clamp(22px,2.4vw,28px)}
-.cf-svc li{padding:16px 0;border-top:1px solid var(--line-dim)}
-.cf-svc b{display:block;font-family:var(--font-d);font-size:17px;font-weight:600;margin-bottom:5px}
-.cf-svc span{font-size:14.5px;color:var(--txt-dim);line-height:1.6}
-.cf-kit dl{margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:13px 26px}
-.cf-kit dt{font-family:var(--font-m);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--txt-faint);line-height:1.8}
-.cf-kit dd{margin:0;font-size:14.5px;color:var(--txt-dim);line-height:1.6}
-.cf-tracer{margin-top:32px;padding:24px;border:1px solid var(--line);background:var(--panel)}
-.cf-tracer b{font-family:var(--font-d);font-size:17px;font-weight:600}
-.cf-tracer p{margin:8px 0 15px;font-size:14px;color:var(--txt-dim);line-height:1.6}
-.cf-links{display:flex;flex-wrap:wrap;gap:9px 24px;font-family:var(--font-m);font-size:11.5px;letter-spacing:.08em}
-.cf-links a{color:var(--neon);transition:opacity .25s}
-.cf-links a:hover{opacity:.72;text-decoration:underline;text-underline-offset:3px}
-.cf-timeline{margin-top:46px}
-.cf-timeline li{display:grid;grid-template-columns:168px minmax(0,1fr);gap:22px;padding:19px 0;border-top:1px solid var(--line-dim)}
-.cf-when{font-family:var(--font-m);font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--neon-dim);line-height:1.9}
-.cf-timeline b{font-family:var(--font-b);font-weight:600;font-size:15.5px;color:var(--txt)}
-.cf-timeline p{margin:6px 0 0;font-size:14.5px;color:var(--txt-dim);line-height:1.6}
+/* ---------- CAPABILITIES / TOOLKIT / TIMELINE ---------- */
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:56px}
+.two .sec-head{margin-bottom:20px}
+.two .sec-head h2{font-size:clamp(22px,2.5vw,29px)}
+.svc li{padding:15px 0;border-top:1px solid var(--rule)}
+.svc b{display:block;font-family:var(--f-d);font-size:17.5px;font-weight:600;letter-spacing:-.015em;margin-bottom:4px}
+.svc span{font-size:14.5px;color:var(--muted);line-height:1.6}
+.kit dl{margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px 24px}
+.kit dt{font-family:var(--f-m);font-size:10px;letter-spacing:.17em;text-transform:uppercase;color:var(--faint);line-height:1.9}
+.kit dd{margin:0;font-size:14.5px;color:var(--muted);line-height:1.6}
+.tracer{margin-top:28px;padding:22px;border:1px solid var(--rule);border-radius:4px;background:var(--card)}
+.tracer b{font-family:var(--f-d);font-size:17.5px;font-weight:600;letter-spacing:-.015em}
+.tracer p{margin:7px 0 13px;font-size:14.5px;color:var(--muted);line-height:1.6}
+.links{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:14px;font-weight:500}
+.links a{color:var(--accent);text-decoration:underline;text-decoration-color:var(--rule);text-underline-offset:4px;transition:text-decoration-color .2s}
+.links a:hover{text-decoration-color:var(--accent)}
+.timeline{margin-top:44px}
+.timeline li{display:grid;grid-template-columns:168px minmax(0,1fr);gap:22px;padding:18px 0;border-top:1px solid var(--rule)}
+.when{font-family:var(--f-m);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);line-height:1.9}
+.timeline b{font-weight:600;font-size:15.5px}
+.timeline p{margin-top:4px;font-size:14.5px;color:var(--muted);line-height:1.6}
 
 /* ---------- CONTACT ---------- */
-.cf-mailrow{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:center;position:relative;margin-bottom:20px}
-.cf-mail{font-family:var(--font-m);font-size:clamp(15px,2vw,20px);letter-spacing:.06em;color:var(--neon);user-select:all;overflow-wrap:anywhere}
-.cf-copy{
-  font-family:var(--font-m);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
-  padding:9px 15px;border:1px solid var(--line);background:transparent;color:var(--txt-dim);
-  cursor:pointer;transition:border-color .25s,color .25s;
+.contact{text-align:center}
+.contact h2{font-size:clamp(30px,4.6vw,50px);font-weight:700;letter-spacing:-.028em;line-height:1.04;margin-bottom:16px}
+.contact > .wrap > p{color:var(--muted);max-width:56ch;margin:0 auto 30px;font-size:16px}
+.mailrow{display:flex;flex-wrap:wrap;gap:11px;align-items:center;justify-content:center;margin-bottom:18px}
+.mail{font-family:var(--f-m);font-size:clamp(15px,2vw,19px);color:var(--ink);user-select:all;overflow-wrap:anywhere}
+.copy{
+  font-family:var(--f-b);font-size:13px;font-weight:600;padding:8px 14px;border:1px solid var(--rule);
+  border-radius:2px;background:transparent;color:var(--ink);cursor:pointer;transition:border-color .2s,background .2s,color .2s;
 }
-.cf-copy:hover{border-color:var(--neon);color:var(--neon)}
-.cf-contact-links{justify-content:center;position:relative}
-.cf-disclaimer{border-top:1px solid var(--line-dim);padding:24px 0 0;margin-top:0;font-family:var(--font-m);font-size:10.5px;letter-spacing:.1em;line-height:1.8;color:var(--txt-faint);text-transform:uppercase}
+.copy:hover{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.contact .links{justify-content:center}
 
-/* ---------- FOCUS / MOTION ---------- */
-:focus-visible{outline:2px solid var(--neon);outline-offset:3px}
-@media (prefers-reduced-motion:reduce){
-  .rv{opacity:1!important;transform:none!important;transition:none!important}
-  .cf-copy,.cf-filters button,.cf-more summary,.cf-published a,.cf-rep-links a{transition:none}
-}
+/* ---------- FOOTER ---------- */
+footer{border-top:1px solid var(--rule);padding:56px 0 44px}
+.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:48px}
+.foot-grid .logo{margin-bottom:16px}
+.foot-grid > div > p{color:var(--muted);font-size:14.5px;max-width:36ch;line-height:1.6}
+.foot-grid h4{font-family:var(--f-m);font-size:10px;font-weight:500;letter-spacing:.17em;text-transform:uppercase;color:var(--faint);margin-bottom:16px}
+.foot-grid li{margin-bottom:10px}
+.foot-grid li a{color:var(--muted);font-size:14.5px;transition:color .2s}
+.foot-grid li a:hover{color:var(--accent)}
+.disclaimer{margin-top:44px;padding-top:22px;border-top:1px solid var(--rule-2);font-size:13px;color:var(--faint);line-height:1.7;max-width:80ch}
+.foot-base{margin-top:22px;display:flex;justify-content:space-between;gap:10px 24px;flex-wrap:wrap;font-family:var(--f-m);font-size:11px;letter-spacing:.09em;color:var(--faint)}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
 
 /* ---------- RESPONSIVE ---------- */
-@media (max-width:1024px){
-  .cf-hero-grid{grid-template-columns:minmax(0,1fr);gap:44px}
-  .cf-case .doss-body{grid-template-columns:minmax(0,1fr)}
-  .cf-chainwrap{border-left:0;border-top:1px solid var(--line);padding-left:0;padding-top:24px}
-  .cf-more-grid{grid-template-columns:minmax(0,1fr);gap:28px}
-  .cf-steps{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .cf-two{grid-template-columns:minmax(0,1fr);gap:52px}
+@media (max-width:1000px){
+  .hero-grid,.two{grid-template-columns:minmax(0,1fr);gap:44px}
+  .case-body,.more-grid{grid-template-columns:minmax(0,1fr);gap:26px}
+  .grade,.steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .foot-grid{grid-template-columns:1fr 1fr;gap:36px}
 }
-@media (max-width:820px){
-  .cf-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .cf-steps{grid-template-columns:minmax(0,1fr)}
-  .cf-more summary{padding:14px 22px}
-  .cf-more-grid{padding:4px 22px 24px}
-  .cf-published{padding:16px 22px;gap:10px}
-  .cf-published a{padding:10px 14px}
-  .cf-findings li{grid-template-columns:minmax(0,1fr);gap:7px}
-  .cf-reports li,.cf-timeline li{grid-template-columns:minmax(0,1fr);gap:8px}
-  .cf-kit dl{grid-template-columns:minmax(0,1fr);gap:3px}
-  .cf-kit dd{margin-bottom:12px}
-  .cf-facts{gap:16px 30px}
-  .cf-facts b{font-size:25px}
-  .cf-exhibit{padding:28px 20px 22px}
-  .cf-sec{padding:62px 0}
+@media (max-width:760px){
+  .wrap,.nav-in{padding:0 20px}
+  .nav-links{
+    display:none;position:absolute;top:68px;left:0;right:0;flex-direction:column;align-items:flex-start;
+    gap:0;background:var(--paper);border-bottom:1px solid var(--rule);padding:8px 20px 16px;
+  }
+  .nav-links.open{display:flex}
+  .nav-links a{padding:11px 0;font-size:12.5px}
+  .nav-cta{margin-top:8px}
+  .burger{display:flex}
+  .hero{padding:52px 0 44px}
+  section{padding:58px 0}
+  .grade,.steps{grid-template-columns:minmax(0,1fr)}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+  .findings li{grid-template-columns:minmax(0,1fr);gap:6px}
+  .reports li,.timeline li{grid-template-columns:minmax(0,1fr);gap:8px}
+  .kit dl{grid-template-columns:minmax(0,1fr);gap:2px}
+  .kit dd{margin-bottom:11px}
+  .case-body{padding:24px 20px}
+  .case-head,.published{padding:12px 20px}
+  .more summary{padding:13px 20px}
+  .more-grid{padding:4px 20px 24px}
+  .foot-grid{grid-template-columns:minmax(0,1fr);gap:30px}
+  .facts{gap:18px 32px}
+  .facts b{font-size:26px}
 }
-@media (max-width:560px){
-  .cf-stats{grid-template-columns:minmax(0,1fr)}
+@media (max-width:460px){
+  .stats{grid-template-columns:minmax(0,1fr)}
 }
 </style>
 </head>
@@ -270,21 +354,20 @@
       <a href="contact.html">Contact</a>
       <a href="contact.html" class="nav-cta">Start Investigation</a>
     </div>
-    <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
-<header class="work-hero">
-  <div class="scanline" aria-hidden="true"></div>
+<header class="hero">
   <div class="wrap">
-    <span class="eyebrow rv in">Selected Case Files</span>
-    <h1 class="rv in">Investigations, <span class="green">on record.</span></h1>
-    <div class="cf-hero-grid">
-      <div class="rv in d1">
-        <p class="cf-role">Ritik Jain · Blockchain &amp; OSINT Investigator · CCAI · CCI · CALM</p>
-        <p class="cf-thesis">I find the people and the money behind anonymous crypto platforms.</p>
+    <span class="eyebrow">Selected Case Files</span>
+    <h1>Investigations, on record.</h1>
+    <div class="hero-grid">
+      <div>
+        <p class="role">Ritik Jain · Blockchain &amp; OSINT Investigator · CCAI · CCI · CALM</p>
+        <p class="thesis">I find the people and the money behind anonymous crypto platforms.</p>
         <p class="lede">On-chain tracing, identity attribution and platform due diligence, written up as evidence-graded reports that a lawyer, a compliance team or a journalist can act on. Every finding below carries a confidence grade and the source it rests on.</p>
-        <ul class="cf-facts">
+        <ul class="facts">
           <li><b>50+</b><span>Cases investigated</span></li>
           <li><b>$10M+</b><span>In fund flows traced</span></li>
           <li><b>4</b><span>Chains: BTC ETH SOL TRX</span></li>
@@ -292,105 +375,92 @@
         </ul>
       </div>
 
-      <figure class="cf-exhibit rv in d2">
-        <span class="cf-aside-lbl">Moonroll · July 2025</span>
+      <figure class="exhibit">
+        <span class="kicker">Moonroll · July 2025</span>
         <h2>Did the anonymous founder take platform funds?</h2>
-        <p class="cf-cap">A Solana casino run by a pseudonymous founder. I traced the money to his wallet, and the wallet to the man.</p>
-        <ol class="cf-chain">
-          <li class="cf-node"><b>Moonroll reserve wallet</b><span class="cf-addr">Platform treasury</span></li>
-          <li class="cf-edge">$41K+ in SOL</li>
-          <li class="cf-node"><b>Founder's wallet</b><span class="cf-addr">9ANf…dGfw</span></li>
-          <li class="cf-edge">Matched to his 2021 NFT mint posts</li>
-          <li class="cf-node"><b>Founder's real identity</b><span class="cf-addr">Withheld here</span></li>
+        <p class="cap">A Solana casino run by a pseudonymous founder. I traced the money to his wallet, and the wallet to the man.</p>
+        <ol class="chain">
+          <li class="node"><b>Moonroll reserve wallet</b><span class="addr">Platform treasury</span></li>
+          <li class="edge">$41K+ in SOL</li>
+          <li class="node"><b>Founder's wallet</b><span class="addr">9ANf…dGfw</span></li>
+          <li class="edge">Matched to his 2021 NFT mint posts</li>
+          <li class="node"><b>Founder's real identity</b><span class="addr">Withheld here</span></li>
         </ol>
-        <div class="cf-verdicts">
-          <div><span class="cf-tag cf-t-det">Deterministic</span><span>The transfer is on-chain.</span></div>
-          <div><span class="cf-tag cf-t-prob">Probabilistic</span><span>Wallet-to-person link, built from his own posts and username history.</span></div>
+        <div class="verdicts">
+          <div><span class="tag t-det">Deterministic</span><span>The transfer is on-chain.</span></div>
+          <div><span class="tag t-prob">Probabilistic</span><span>Wallet-to-person link, built from his own posts and username history.</span></div>
         </div>
       </figure>
     </div>
   </div>
 </header>
 
-<div class="registry-header">
+<section id="cases" class="band">
   <div class="wrap">
-    <span class="lbl">Case Registry · Active</span>
-    <div class="filters">
-      <span>Summarised: <b>08</b></span><span class="sep"></span>
-      <span>Formal reports: <b>04</b></span><span class="sep"></span>
-      <span>Chains: <b>SOL · ETH · BTC · TRX</b></span><span class="sep"></span>
-      <span>Classification: <b class="neon">Public Summary</b></span>
+    <div class="sec-head">
+      <h2>Case files</h2>
+      <p>Selected investigations from 2025. Each finding carries a confidence grade and the source it rests on. Open a case for the full findings and method.</p>
     </div>
-  </div>
-</div>
 
-<section id="cases">
-  <div class="wrap">
-    <div class="cf-filterbar">
-      <div class="cf-filters" role="group" aria-label="Filter cases by discipline">
+    <div class="filterbar">
+      <div class="filters" role="group" aria-label="Filter cases by discipline">
         <button type="button" data-f="all" aria-pressed="true">All</button>
         <button type="button" data-f="onchain" aria-pressed="false">On-chain tracing</button>
         <button type="button" data-f="osint" aria-pressed="false">OSINT attribution</button>
         <button type="button" data-f="dd" aria-pressed="false">Due diligence</button>
       </div>
-      <p class="cf-count" id="cf-count" aria-live="polite">Showing 8 of 8 cases</p>
+      <p class="count" id="count" aria-live="polite">Showing 8 of 8 cases</p>
     </div>
 
-    <div class="cf-list">
+    <div class="cases">
 
-      <!-- ============ CASE: Rollbit influencer funding ============ -->
-      <article class="dossier cf-case" data-groups="onchain" id="rollbit-influencer-funding">
-        <div class="doss-top">
-          <div class="left">
-            <span>Discipline: <b class="neon">On-chain tracing</b></span>
-            <span>Chains: <b>Ethereum · Solana</b></span>
-          </div>
-          <div class="right">
-            <span>Period: <b>Dec 2021 – 2024</b></span>
-            <span class="classification">PUBLIC SUMMARY</span>
-          </div>
-        </div>
-        <div class="doss-body">
-          <div>
-            <p class="cf-platform">Rollbit</p>
+      <!-- ============ Rollbit influencer funding ============ -->
+      <article class="case" data-groups="onchain" id="rollbit-influencer-funding">
+        <header class="case-head">
+          <div><span>On-chain tracing</span><span>Ethereum · Solana</span></div>
+          <div><span>Covers <b>Dec 2021 – 2024</b></span></div>
+        </header>
+        <div class="case-body">
+          <div class="case-main">
+            <p class="platform">Rollbit</p>
             <h3>Casino-funded influencer wallets</h3>
-            <p class="cf-q">Were the streamers and influencers promoting Rollbit betting their own money, or the casino's?</p>
-            <p class="cf-tldr">I mapped 15+ wallets around a high-profile streamer. Deposits he presented as his own purchases came from Rollbit's hot wallet minutes earlier, and went straight back to the casino.</p>
-            <div class="cf-stats">
-              <div><div class="cf-num">350.9 ETH</div><div class="cf-lbl">Sent by the casino 5 minutes before a stream</div></div>
-              <div><div class="cf-num">15+</div><div class="cf-lbl">Wallets mapped around one streamer</div></div>
-              <div><div class="cf-num">~$90M</div><div class="cf-lbl">ETH moved from casino hot wallets to exchange deposits</div></div>
+            <p class="question">Were the streamers and influencers promoting Rollbit betting their own money, or the casino's?</p>
+            <p class="tldr">I mapped 15+ wallets around a high-profile streamer. Deposits he presented as his own purchases came from Rollbit's hot wallet minutes earlier, and went straight back to the casino.</p>
+            <div class="stats">
+              <div class="stat"><span class="num">350.9 ETH</span><span class="lbl">Sent by the casino 5 minutes before a stream</span></div>
+              <div class="stat"><span class="num">15+</span><span class="lbl">Wallets mapped around one streamer</span></div>
+              <div class="stat"><span class="num">~$90M</span><span class="lbl">ETH moved from casino hot wallets to exchange deposits</span></div>
             </div>
           </div>
-          <aside class="cf-chainwrap" aria-label="Evidence chain">
-            <span class="cf-aside-lbl">Evidence chain</span>
-            <ol class="cf-chain">
-              <li class="cf-node"><b>Rollbit hot wallet</b><span class="cf-addr">0xCBD6…75ac</span></li>
-              <li class="cf-edge">350.915 ETH · 5 min before stream</li>
-              <li class="cf-node"><b>Streamer exchange deposit</b><span class="cf-addr">0x24AF…7dC7</span></li>
-              <li class="cf-edge">Deposited to casino</li>
-              <li class="cf-node"><b>Streamer casino deposit</b><span class="cf-addr">0xd267…ebB7</span></li>
+          <aside class="chainwrap" aria-label="Evidence chain">
+            <span class="aside-lbl">Evidence chain</span>
+            <ol class="chain">
+              <li class="node"><b>Rollbit hot wallet</b><span class="addr">0xCBD6…75ac</span></li>
+              <li class="edge">350.915 ETH · 5 min before stream</li>
+              <li class="node"><b>Streamer exchange deposit</b><span class="addr">0x24AF…7dC7</span></li>
+              <li class="edge">Deposited to casino</li>
+              <li class="node"><b>Streamer casino deposit</b><span class="addr">0xd267…ebB7</span></li>
             </ol>
-            <p class="cf-chain-note">21 Dec 2021. The streamer went live showing a ~$1M Rollbit balance minutes after this transfer.</p>
+            <p class="chain-note">21 Dec 2021. The streamer went live showing a ~$1M Rollbit balance minutes after this transfer.</p>
           </aside>
         </div>
-        <details class="cf-more">
+        <details class="more">
           <summary>Findings, method and deliverable</summary>
-          <div class="cf-more-grid">
+          <div class="more-grid">
             <div>
               <h4>Findings</h4>
-              <ul class="cf-findings">
-                <li><span class="cf-tag cf-t-det">Deterministic</span><p>Rollbit's hot wallet sent 350.915 ETH to the streamer's exchange deposit address five minutes before he went live showing a ~$1M balance.<span class="cf-src">Transfer history, stream time</span></p></li>
-                <li><span class="cf-tag cf-t-det">Deterministic</span><p>86.9 ETH arrived from the casino 27 minutes before he posted that he had personally bought ~$170K of ETH. The ETH then went back to Rollbit.<span class="cf-src">Transfer history, archived post</span></p></li>
-                <li><span class="cf-tag cf-t-heur">Heuristic</span><p>The repeated timing fits sponsored play money presented as personal funds.<span class="cf-src">Pattern across events</span></p></li>
-                <li><span class="cf-tag cf-t-det">Deterministic</span><p>Casino hot wallets held ~$10M of ETH while ~$90M had been sent to two exchange deposit addresses.<span class="cf-src">Balances and outflows</span></p></li>
-                <li><span class="cf-tag cf-t-prob">Probabilistic</span><p>A second influencer (280K followers) bought RLB, deposited it to his own casino deposit address, withdrew to a fresh wallet and sold. At least 9 transfers (30,000 SOL) from the selling wallet back to that unique deposit address tie both wallets to him.<span class="cf-src">Deposit-address reuse</span></p></li>
-                <li><span class="cf-tag cf-t-rep">Reported</span><p>He was publicly accused of selling ~45M RLB (~$3M at peak) while promoting it.<span class="cf-src">Public allegation</span></p></li>
+              <ul class="findings">
+                <li><span class="tag t-det">Deterministic</span><p>Rollbit's hot wallet sent 350.915 ETH to the streamer's exchange deposit address five minutes before he went live showing a ~$1M balance.<span class="src">Transfer history, stream time</span></p></li>
+                <li><span class="tag t-det">Deterministic</span><p>86.9 ETH arrived from the casino 27 minutes before he posted that he had personally bought ~$170K of ETH. The ETH then went back to Rollbit.<span class="src">Transfer history, archived post</span></p></li>
+                <li><span class="tag t-heur">Heuristic</span><p>The repeated timing fits sponsored play money presented as personal funds.<span class="src">Pattern across events</span></p></li>
+                <li><span class="tag t-det">Deterministic</span><p>Casino hot wallets held ~$10M of ETH while ~$90M had been sent to two exchange deposit addresses.<span class="src">Balances and outflows</span></p></li>
+                <li><span class="tag t-prob">Probabilistic</span><p>A second influencer (280K followers) bought RLB, deposited it to his own casino deposit address, withdrew to a fresh wallet and sold. At least 9 transfers (30,000 SOL) from the selling wallet back to that unique deposit address tie both wallets to him.<span class="src">Deposit-address reuse</span></p></li>
+                <li><span class="tag t-rep">Reported</span><p>He was publicly accused of selling ~45M RLB (~$3M at peak) while promoting it.<span class="src">Public allegation</span></p></li>
               </ul>
             </div>
             <div>
               <h4>How I worked</h4>
-              <ol class="cf-method">
+              <ol class="method">
                 <li>Labelled Rollbit's main hot wallet and the streamer's exchange and casino deposit addresses.</li>
                 <li>Matched his public posts and stream start times against transfer timestamps.</li>
                 <li>Followed every deposit forward to see where the funds ended up.</li>
@@ -399,69 +469,63 @@
               </ol>
               <h4>Delivered</h4>
               <p>Evidence pack with transaction hashes, timestamped screenshots and a fund-flow graph, written so a non-technical reader can follow each step. The findings were published as part of a public report.</p>
-              <p class="cf-tools"><span>Sources and tools</span>Arkham · Etherscan · Solscan · Archived posts</p>
-              <p class="cf-withheld">Streamer and influencer names withheld in this summary.</p>
+              <p class="tools"><span>Sources and tools</span>Arkham · Etherscan · Solscan · Archived posts</p>
+              <p class="withheld">Streamer and influencer names withheld in this summary.</p>
             </div>
           </div>
         </details>
       </article>
 
-      <!-- ============ CASE: Gambling ownership network ============ -->
-      <article class="dossier cf-case" data-groups="osint dd" id="gambling-network">
-        <div class="doss-top">
-          <div class="left">
-            <span>Discipline: <b class="neon">Corporate OSINT</b></span>
-            <span>Scope: <b>AI misuse</b></span>
-          </div>
-          <div class="right">
-            <span>Period: <b>July 2025</b></span>
-            <span class="classification">PUBLIC SUMMARY</span>
-          </div>
-        </div>
-        <div class="doss-body">
-          <div>
-            <p class="cf-platform">Ownership network</p>
+      <!-- ============ Gambling ownership network ============ -->
+      <article class="case" data-groups="osint dd" id="gambling-network">
+        <header class="case-head">
+          <div><span>Corporate OSINT</span><span>AI misuse</span></div>
+          <div><span>July 2025</span></div>
+        </header>
+        <div class="case-body">
+          <div class="case-main">
+            <p class="platform">Ownership network</p>
             <h3>One director, 120+ companies, 150+ gambling sites, and a deepfake app</h3>
-            <p class="cf-q">Who sits behind a cluster of skin-betting and casino sites with no visible owner, and what else do they run?</p>
-            <p class="cf-tldr">I mapped one Cyprus-based director to 120+ registered companies. At least five are linked to 150+ casino and skin-betting sites. One of them, Crystal Future OÜ, is also named as operator of BikiniOff, an AI app that turns ordinary photos of real people into fake nude images.</p>
-            <div class="cf-stats">
-              <div><div class="cf-num">120+</div><div class="cf-lbl">Companies tied to one director</div></div>
-              <div><div class="cf-num">150+</div><div class="cf-lbl">Casino and skin-betting sites</div></div>
-              <div><div class="cf-num">1</div><div class="cf-lbl">AI deepfake app run by the same company</div></div>
+            <p class="question">Who sits behind a cluster of skin-betting and casino sites with no visible owner, and what else do they run?</p>
+            <p class="tldr">I mapped one Cyprus-based director to 120+ registered companies. At least five are linked to 150+ casino and skin-betting sites. One of them, Crystal Future OÜ, is also named as operator of BikiniOff, an AI app that turns ordinary photos of real people into fake nude images.</p>
+            <div class="stats">
+              <div class="stat"><span class="num">120+</span><span class="lbl">Companies tied to one director</span></div>
+              <div class="stat"><span class="num">150+</span><span class="lbl">Casino and skin-betting sites</span></div>
+              <div class="stat"><span class="num">1</span><span class="lbl">AI deepfake app run by the same company</span></div>
             </div>
           </div>
-          <aside class="cf-chainwrap" aria-label="Evidence chain">
-            <span class="cf-aside-lbl">Evidence chain</span>
-            <ol class="cf-chain">
-              <li class="cf-node"><b>Site footers &amp; T&amp;Cs</b></li>
-              <li class="cf-edge">Operator names</li>
-              <li class="cf-node"><b>4 operating companies</b></li>
-              <li class="cf-edge">Registry records</li>
-              <li class="cf-node"><b>1 director, 120+ companies</b></li>
-              <li class="cf-edge">Same company</li>
-              <li class="cf-node"><b>BikiniOff</b><span class="cf-addr">AI deepfake app</span></li>
+          <aside class="chainwrap" aria-label="Evidence chain">
+            <span class="aside-lbl">Evidence chain</span>
+            <ol class="chain">
+              <li class="node"><b>Site footers &amp; T&amp;Cs</b></li>
+              <li class="edge">Operator names</li>
+              <li class="node"><b>4 operating companies</b></li>
+              <li class="edge">Registry records</li>
+              <li class="node"><b>1 director, 120+ companies</b></li>
+              <li class="edge">Same company</li>
+              <li class="node"><b>BikiniOff</b><span class="addr">AI deepfake app</span></li>
             </ol>
-            <p class="cf-chain-note">The topskin.cc domain record names the director, through Crystal Future OÜ, as owner. That confirmed the link independently.</p>
+            <p class="chain-note">The topskin.cc domain record names the director, through Crystal Future OÜ, as owner. That confirmed the link independently.</p>
           </aside>
         </div>
-        <details class="cf-more">
+        <details class="more">
           <summary>Findings, method and deliverable</summary>
-          <div class="cf-more-grid">
+          <div class="more-grid">
             <div>
               <h4>Findings</h4>
-              <ul class="cf-findings">
-                <li><span class="cf-tag cf-t-det">Deterministic</span><p>One person holds founder, director or shareholder roles in 120+ Cyprus companies, active since January 2017.<span class="cf-src">Company registries</span></p></li>
-                <li><span class="cf-tag cf-t-prob">Probabilistic</span><p>Four companies form the operating backbone, linked to 150+ casino and skin-betting sites and a fantasy-football app with 1M+ downloads.<span class="cf-src">Site T&amp;Cs, footers, app store</span></p></li>
-                <li><span class="cf-tag cf-t-det">Deterministic</span><p>The topskin.cc domain record names the same person, through Crystal Future OÜ, as owner.<span class="cf-src">Domain record</span></p></li>
-                <li><span class="cf-tag cf-t-det">Deterministic</span><p>The archived bikinioff.net site and its user agreement name Crystal Future OÜ as operator of the app and its Telegram bot.<span class="cf-src">Archived site, user agreement</span></p></li>
-                <li><span class="cf-tag cf-t-det">Deterministic</span><p>BikiniOff's terms include no consent, moderation or age checks.<span class="cf-src">Archived user agreement</span></p></li>
-                <li><span class="cf-tag cf-t-rep">Reported</span><p>The app has been tied to Italian investigations into fake nude images of school students.<span class="cf-src">Italian news coverage</span></p></li>
-                <li><span class="cf-tag cf-t-rep">Reported</span><p>WIPO case D2018-0366 found pubg.com was registered in bad faith by the same person and company, and ordered it transferred.<span class="cf-src">WIPO decision</span></p></li>
+              <ul class="findings">
+                <li><span class="tag t-det">Deterministic</span><p>One person holds founder, director or shareholder roles in 120+ Cyprus companies, active since January 2017.<span class="src">Company registries</span></p></li>
+                <li><span class="tag t-prob">Probabilistic</span><p>Four companies form the operating backbone, linked to 150+ casino and skin-betting sites and a fantasy-football app with 1M+ downloads.<span class="src">Site T&amp;Cs, footers, app store</span></p></li>
+                <li><span class="tag t-det">Deterministic</span><p>The topskin.cc domain record names the same person, through Crystal Future OÜ, as owner.<span class="src">Domain record</span></p></li>
+                <li><span class="tag t-det">Deterministic</span><p>The archived bikinioff.net site and its user agreement name Crystal Future OÜ as operator of the app and its Telegram bot.<span class="src">Archived site, user agreement</span></p></li>
+                <li><span class="tag t-det">Deterministic</span><p>BikiniOff's terms include no consent, moderation or age checks.<span class="src">Archived user agreement</span></p></li>
+                <li><span class="tag t-rep">Reported</span><p>The app has been tied to Italian investigations into fake nude images of school students.<span class="src">Italian news coverage</span></p></li>
+                <li><span class="tag t-rep">Reported</span><p>WIPO case D2018-0366 found pubg.com was registered in bad faith by the same person and company, and ordered it transferred.<span class="src">WIPO decision</span></p></li>
               </ul>
             </div>
             <div>
               <h4>How I worked</h4>
-              <ol class="cf-method">
+              <ol class="method">
                 <li>Collected operating-company names from site footers, terms and payment pages.</li>
                 <li>Searched company registries for directors and shareholders.</li>
                 <li>Confirmed the link through a domain record naming the same person.</li>
@@ -471,65 +535,59 @@
               </ol>
               <h4>Delivered</h4>
               <p>Network map linking person → companies → sites → AI app, with a source for every link.</p>
-              <p class="cf-tools"><span>Sources and tools</span>Company registries · Domain records · Wayback Machine · App stores · WIPO records</p>
-              <p class="cf-withheld">Personal name, birth date and residence withheld in this summary.</p>
+              <p class="tools"><span>Sources and tools</span>Company registries · Domain records · Wayback Machine · App stores · WIPO records</p>
+              <p class="withheld">Personal name, birth date and residence withheld in this summary.</p>
             </div>
           </div>
         </details>
       </article>
 
-      <!-- ============ CASE: Moonroll founder ============ -->
-      <article class="dossier cf-case" data-groups="osint onchain" id="moonroll-founder">
-        <div class="doss-top">
-          <div class="left">
-            <span>Discipline: <b class="neon">OSINT + on-chain attribution</b></span>
-            <span>Chain: <b>Solana</b></span>
-          </div>
-          <div class="right">
-            <span>Period: <b>July 2025</b></span>
-            <span class="classification">PUBLIC SUMMARY</span>
-          </div>
-        </div>
-        <div class="doss-body">
-          <div>
-            <p class="cf-platform">Moonroll</p>
+      <!-- ============ Moonroll founder ============ -->
+      <article class="case" data-groups="osint onchain" id="moonroll-founder">
+        <header class="case-head">
+          <div><span>OSINT + on-chain attribution</span><span>Solana</span></div>
+          <div><span>July 2025</span></div>
+        </header>
+        <div class="case-body">
+          <div class="case-main">
+            <p class="platform">Moonroll</p>
             <h3>Who runs the casino, and did he take platform funds?</h3>
-            <p class="cf-q">Who is behind the pseudonymous founder account of a Solana NFT casino, and has he taken platform funds?</p>
-            <p class="cf-tldr">I linked the founder's pseudonym to a real identity through username history, deleted posts and an earlier startup. I then found his primary wallet through 2021 NFT mints. That wallet received $41K+ in SOL from the platform's reserve wallet.</p>
-            <div class="cf-stats">
-              <div><div class="cf-num">$41K+</div><div class="cf-lbl">SOL from the platform reserve to the founder</div></div>
-              <div><div class="cf-num">30+</div><div class="cf-lbl">Platform NFTs minted by his wallet</div></div>
-              <div><div class="cf-num">4-step</div><div class="cf-lbl">Identity chain, each step sourced</div></div>
+            <p class="question">Who is behind the pseudonymous founder account of a Solana NFT casino, and has he taken platform funds?</p>
+            <p class="tldr">I linked the founder's pseudonym to a real identity through username history, deleted posts and an earlier startup. I then found his primary wallet through 2021 NFT mints. That wallet received $41K+ in SOL from the platform's reserve wallet.</p>
+            <div class="stats">
+              <div class="stat"><span class="num">$41K+</span><span class="lbl">SOL from the platform reserve to the founder</span></div>
+              <div class="stat"><span class="num">30+</span><span class="lbl">Platform NFTs minted by his wallet</span></div>
+              <div class="stat"><span class="num">4-step</span><span class="lbl">Identity chain, each step sourced</span></div>
             </div>
           </div>
-          <aside class="cf-chainwrap" aria-label="Evidence chain">
-            <span class="cf-aside-lbl">Evidence chain</span>
-            <ol class="cf-chain">
-              <li class="cf-node"><b>Founder X handle</b></li>
-              <li class="cf-edge">Username history</li>
-              <li class="cf-node"><b>Older alias</b></li>
-              <li class="cf-edge">Earlier startup page</li>
-              <li class="cf-node"><b>Real identity</b><span class="cf-addr">Withheld</span></li>
+          <aside class="chainwrap" aria-label="Evidence chain">
+            <span class="aside-lbl">Evidence chain</span>
+            <ol class="chain">
+              <li class="node"><b>Founder X handle</b></li>
+              <li class="edge">Username history</li>
+              <li class="node"><b>Older alias</b></li>
+              <li class="edge">Earlier startup page</li>
+              <li class="node"><b>Real identity</b><span class="addr">Withheld</span></li>
             </ol>
-            <p class="cf-chain-note">Separate wallet trail: Moonroll reserve wallet → $41K+ SOL → founder wallet (9ANf…dGfw), found through his 2021 NFT mints.</p>
+            <p class="chain-note">Separate wallet trail: Moonroll reserve wallet → $41K+ SOL → founder wallet (9ANf…dGfw), found through his 2021 NFT mints.</p>
           </aside>
         </div>
-        <details class="cf-more">
+        <details class="more">
           <summary>Findings, method and deliverable</summary>
-          <div class="cf-more-grid">
+          <div class="more-grid">
             <div>
               <h4>Findings</h4>
-              <ul class="cf-findings">
-                <li><span class="cf-tag cf-t-det">Deterministic</span><p>Username history links the founder handle to an older alias.<span class="cf-src">Username history</span></p></li>
-                <li><span class="cf-tag cf-t-prob">Probabilistic</span><p>Deleted posts show alternate accounts under the same alias.<span class="cf-src">Archived posts</span></p></li>
-                <li><span class="cf-tag cf-t-prob">Probabilistic</span><p>An earlier startup's public page links the alias to a personal profile under a real name.<span class="cf-src">Public company page</span></p></li>
-                <li><span class="cf-tag cf-t-prob">Probabilistic</span><p>His primary wallet is the one that made the 2021 NFT mints he posted about.<span class="cf-src">Mint records and posts</span></p></li>
-                <li><span class="cf-tag cf-t-det">Deterministic</span><p>That wallet minted 30+ of the platform's own NFT collection and received $41K+ in SOL from the platform's reserve wallet.<span class="cf-src">Transfer history</span></p></li>
+              <ul class="findings">
+                <li><span class="tag t-det">Deterministic</span><p>Username history links the founder handle to an older alias.<span class="src">Username history</span></p></li>
+                <li><span class="tag t-prob">Probabilistic</span><p>Deleted posts show alternate accounts under the same alias.<span class="src">Archived posts</span></p></li>
+                <li><span class="tag t-prob">Probabilistic</span><p>An earlier startup's public page links the alias to a personal profile under a real name.<span class="src">Public company page</span></p></li>
+                <li><span class="tag t-prob">Probabilistic</span><p>His primary wallet is the one that made the 2021 NFT mints he posted about.<span class="src">Mint records and posts</span></p></li>
+                <li><span class="tag t-det">Deterministic</span><p>That wallet minted 30+ of the platform's own NFT collection and received $41K+ in SOL from the platform's reserve wallet.<span class="src">Transfer history</span></p></li>
               </ul>
             </div>
             <div>
               <h4>How I worked</h4>
-              <ol class="cf-method">
+              <ol class="method">
                 <li>Pulled username history for the founder's X handle and found an older alias.</li>
                 <li>Recovered deleted posts from archives, which led to alternate accounts and an earlier career.</li>
                 <li>Tied the alias to a real name through a startup he co-founded, whose public page linked his personal profile.</li>
@@ -538,65 +596,59 @@
               </ol>
               <h4>Delivered</h4>
               <p>Identity profile with a sourced evidence chain and wallet trace, delivered to the client.</p>
-              <p class="cf-tools"><span>Sources and tools</span>X username history · Wayback Machine · Solscan · Arkham</p>
-              <p class="cf-withheld">Name, location and social accounts withheld in this summary.</p>
+              <p class="tools"><span>Sources and tools</span>X username history · Wayback Machine · Solscan · Arkham</p>
+              <p class="withheld">Name, location and social accounts withheld in this summary.</p>
             </div>
           </div>
         </details>
       </article>
 
-      <!-- ============ CASE: Luck.io custody ============ -->
-      <article class="dossier cf-case" data-groups="dd onchain" id="luckio-custody">
-        <div class="doss-top">
-          <div class="left">
-            <span>Discipline: <b class="neon">Smart contract due diligence</b></span>
-            <span>Chain: <b>Solana</b></span>
-          </div>
-          <div class="right">
-            <span>Period: <b>Tested July 2025</b></span>
-            <span class="classification">PUBLISHED REPORT</span>
-          </div>
-        </div>
-        <div class="doss-body">
-          <div>
-            <p class="cf-platform">Luck.io</p>
+      <!-- ============ Luck.io custody ============ -->
+      <article class="case" data-groups="dd onchain" id="luckio-custody">
+        <header class="case-head">
+          <div><span>Smart contract due diligence</span><span>Solana</span></div>
+          <div><span>Tested July 2025</span><span class="pub">Published report</span></div>
+        </header>
+        <div class="case-body">
+          <div class="case-main">
+            <p class="platform">Luck.io</p>
             <h3>Is "self-custody" really self-custody?</h3>
-            <p class="cf-q">Are Luck.io's "self-custodial" Smart Vaults really controlled only by the player?</p>
-            <p class="cf-tldr">No. Every vault is a program-owned account. The program is upgradeable, and its upgrade key sits with a 3-of-9 anonymous multisig. The audited code also could not be matched to what is deployed.</p>
-            <div class="cf-stats">
-              <div><div class="cf-num">3 of 9</div><div class="cf-lbl">Anonymous signatures can change vault logic</div></div>
-              <div><div class="cf-num">1</div><div class="cf-lbl">Program owns every user's vault</div></div>
-              <div><div class="cf-num">0</div><div class="cf-lbl">Public source code</div></div>
+            <p class="question">Are Luck.io's "self-custodial" Smart Vaults really controlled only by the player?</p>
+            <p class="tldr">No. Every vault is a program-owned account. The program is upgradeable, and its upgrade key sits with a 3-of-9 anonymous multisig. The audited code also could not be matched to what is deployed.</p>
+            <div class="stats">
+              <div class="stat"><span class="num">3 of 9</span><span class="lbl">Anonymous signatures can change vault logic</span></div>
+              <div class="stat"><span class="num">1</span><span class="lbl">Program owns every user's vault</span></div>
+              <div class="stat"><span class="num">0</span><span class="lbl">Public source code</span></div>
             </div>
           </div>
-          <aside class="cf-chainwrap" aria-label="Evidence chain">
-            <span class="cf-aside-lbl">Evidence chain</span>
-            <ol class="cf-chain">
-              <li class="cf-node"><b>User Smart Vault</b><span class="cf-addr">PDA, no private key</span></li>
-              <li class="cf-edge">Owned by</li>
-              <li class="cf-node"><b>Vault program</b><span class="cf-addr">AQZd…pYom</span></li>
-              <li class="cf-edge">Upgrade authority</li>
-              <li class="cf-node"><b>Squads V4 multisig</b><span class="cf-addr">3-of-9, anonymous</span></li>
+          <aside class="chainwrap" aria-label="Evidence chain">
+            <span class="aside-lbl">Evidence chain</span>
+            <ol class="chain">
+              <li class="node"><b>User Smart Vault</b><span class="addr">PDA, no private key</span></li>
+              <li class="edge">Owned by</li>
+              <li class="node"><b>Vault program</b><span class="addr">AQZd…pYom</span></li>
+              <li class="edge">Upgrade authority</li>
+              <li class="node"><b>Squads V4 multisig</b><span class="addr">3-of-9, anonymous</span></li>
             </ol>
-            <p class="cf-chain-note">Whoever controls the upgrade authority can redeploy the program and change how vaults behave, including withdrawals.</p>
+            <p class="chain-note">Whoever controls the upgrade authority can redeploy the program and change how vaults behave, including withdrawals.</p>
           </aside>
         </div>
-        <details class="cf-more">
+        <details class="more">
           <summary>Findings, method and deliverable</summary>
-          <div class="cf-more-grid">
+          <div class="more-grid">
             <div>
               <h4>Findings</h4>
-              <ul class="cf-findings">
-                <li><span class="cf-tag cf-t-det">Deterministic</span><p>Vaults are program-derived addresses (isOnCurve = false), so they have no private key and the user cannot sign for them.<span class="cf-src">Account data</span></p></li>
-                <li><span class="cf-tag cf-t-det">Deterministic</span><p>Every vault checked, including my own test vault, is owned by one program.<span class="cf-src">Owner field</span></p></li>
-                <li><span class="cf-tag cf-t-det">Deterministic</span><p>The program is upgradeable, and its authority is a 3-of-9 Squads V4 multisig with anonymous signers.<span class="cf-src">Upgrade authority</span></p></li>
-                <li><span class="cf-tag cf-t-det">Deterministic</span><p>Source code is not public, and the audited build's hash does not match the deployed program.<span class="cf-src">Verification API</span></p></li>
-                <li><span class="cf-tag cf-t-rep">Reported</span><p>Wins and losses are settled by backend wallets, and randomness is computed off-chain. I found no oracle list and no on-chain randomness proofs.<span class="cf-src">Halborn audit, tx review</span></p></li>
+              <ul class="findings">
+                <li><span class="tag t-det">Deterministic</span><p>Vaults are program-derived addresses (isOnCurve = false), so they have no private key and the user cannot sign for them.<span class="src">Account data</span></p></li>
+                <li><span class="tag t-det">Deterministic</span><p>Every vault checked, including my own test vault, is owned by one program.<span class="src">Owner field</span></p></li>
+                <li><span class="tag t-det">Deterministic</span><p>The program is upgradeable, and its authority is a 3-of-9 Squads V4 multisig with anonymous signers.<span class="src">Upgrade authority</span></p></li>
+                <li><span class="tag t-det">Deterministic</span><p>Source code is not public, and the audited build's hash does not match the deployed program.<span class="src">Verification API</span></p></li>
+                <li><span class="tag t-rep">Reported</span><p>Wins and losses are settled by backend wallets, and randomness is computed off-chain. I found no oracle list and no on-chain randomness proofs.<span class="src">Halborn audit, tx review</span></p></li>
               </ul>
             </div>
             <div>
               <h4>How I worked</h4>
-              <ol class="cf-method">
+              <ol class="method">
                 <li>Deposited to a test vault and inspected the account on-chain (on-curve check, owner field).</li>
                 <li>Traced ownership up to the program and its upgrade authority.</li>
                 <li>Compared the audited code hash with the deployed program using OtterSec's verification API.</li>
@@ -605,70 +657,64 @@
               </ol>
               <h4>Delivered</h4>
               <p>A claim-by-claim verdict table (true, partly true, unverifiable, false) a non-technical reader can use. Bottom line: the custody and fairness claims cannot be verified on-chain.</p>
-              <p class="cf-tools"><span>Sources and tools</span>Solscan · Solana account data · OtterSec verify API · Halborn audit</p>
+              <p class="tools"><span>Sources and tools</span>Solscan · Solana account data · OtterSec verify API · Halborn audit</p>
             </div>
           </div>
         </details>
-        <div class="cf-published">
-          <span class="cf-pub-no">Published as <b>INVG-2025-001</b></span>
-          <a class="primary" href="https://docs.google.com/document/d/1n3FgDfK1hiWsM2eEdIh3sogpQdDOc44ptoclfhFoRqM/export?format=pdf" target="_blank" rel="noopener">Download full report ↓</a>
-          <a href="article-luckio-provably-fair.html">Read in plain language →</a>
+        <div class="published">
+          <span class="pub-no">Published as <b>INVG-2025-001</b></span>
+          <a class="lnk primary" href="https://docs.google.com/document/d/1n3FgDfK1hiWsM2eEdIh3sogpQdDOc44ptoclfhFoRqM/export?format=pdf" target="_blank" rel="noopener">Download full report ↓</a>
+          <a class="lnk" href="article-luckio-provably-fair.html">Read in plain language →</a>
         </div>
       </article>
 
-      <!-- ============ CASE: BetBolt domain ============ -->
-      <article class="dossier cf-case" data-groups="dd osint" id="betbolt-domain">
-        <div class="doss-top">
-          <div class="left">
-            <span>Discipline: <b class="neon">Infrastructure OSINT</b></span>
-            <span>Scope: <b>Due diligence</b></span>
-          </div>
-          <div class="right">
-            <span>Period: <b>June 2025</b></span>
-            <span class="classification">PUBLISHED REPORT</span>
-          </div>
-        </div>
-        <div class="doss-body">
-          <div>
-            <p class="cf-platform">BetBolt</p>
+      <!-- ============ BetBolt domain ============ -->
+      <article class="case" data-groups="dd osint" id="betbolt-domain">
+        <header class="case-head">
+          <div><span>Infrastructure OSINT</span><span>Due diligence</span></div>
+          <div><span>June 2025</span><span class="pub">Published report</span></div>
+        </header>
+        <div class="case-body">
+          <div class="case-main">
+            <p class="platform">BetBolt</p>
             <h3>Why the casino's domain went dark</h3>
-            <p class="cf-q">Why did a crypto casino's main domain go offline, and does its license claim hold up?</p>
-            <p class="cf-tldr">WHOIS showed the registrar had put the domain on clientHold, the status a registrar uses to disable a domain. The registrar's legal team cited legal and operational issues, and the casino moved to a new domain at another registrar. Its license claims didn't hold up either.</p>
-            <div class="cf-stats">
-              <div><div class="cf-num">4d 19h</div><div class="cf-lbl">Offline when I started</div></div>
-              <div><div class="cf-num">clientHold</div><div class="cf-lbl">Status set by the registrar</div></div>
-              <div><div class="cf-num">0</div><div class="cf-lbl">Verifiable gambling licenses</div></div>
+            <p class="question">Why did a crypto casino's main domain go offline, and does its license claim hold up?</p>
+            <p class="tldr">WHOIS showed the registrar had put the domain on clientHold, the status a registrar uses to disable a domain. The registrar's legal team cited legal and operational issues, and the casino moved to a new domain at another registrar. Its license claims didn't hold up either.</p>
+            <div class="stats">
+              <div class="stat"><span class="num">4d 19h</span><span class="lbl">Offline when I started</span></div>
+              <div class="stat"><span class="num">clientHold</span><span class="lbl">Status set by the registrar</span></div>
+              <div class="stat"><span class="num">0</span><span class="lbl">Verifiable gambling licenses</span></div>
             </div>
           </div>
-          <aside class="cf-chainwrap" aria-label="Evidence chain">
-            <span class="cf-aside-lbl">Evidence chain</span>
-            <ol class="cf-chain">
-              <li class="cf-node"><b>betbolt.com</b><span class="cf-addr">Offline</span></li>
-              <li class="cf-edge">WHOIS status</li>
-              <li class="cf-node"><b>clientHold</b><span class="cf-addr">Set by registrar</span></li>
-              <li class="cf-edge">Registrar legal team</li>
-              <li class="cf-node"><b>betbolt.io</b><span class="cf-addr">New registrar</span></li>
+          <aside class="chainwrap" aria-label="Evidence chain">
+            <span class="aside-lbl">Evidence chain</span>
+            <ol class="chain">
+              <li class="node"><b>betbolt.com</b><span class="addr">Offline</span></li>
+              <li class="edge">WHOIS status</li>
+              <li class="node"><b>clientHold</b><span class="addr">Set by registrar</span></li>
+              <li class="edge">Registrar legal team</li>
+              <li class="node"><b>betbolt.io</b><span class="addr">New registrar</span></li>
             </ol>
-            <p class="cf-chain-note">clientHold is set by the registrar, not the site owner. Most likely cause: a legal order served on the registrar.</p>
+            <p class="chain-note">clientHold is set by the registrar, not the site owner. Most likely cause: a legal order served on the registrar.</p>
           </aside>
         </div>
-        <details class="cf-more">
+        <details class="more">
           <summary>Findings, method and deliverable</summary>
-          <div class="cf-more-grid">
+          <div class="more-grid">
             <div>
               <h4>Findings</h4>
-              <ul class="cf-findings">
-                <li><span class="cf-tag cf-t-det">Deterministic</span><p>Domain status was clientHold, set by the registrar (Namecheap).<span class="cf-src">WHOIS</span></p></li>
-                <li><span class="cf-tag cf-t-rep">Reported</span><p>The registrar's legal team cited legal and operational issues.<span class="cf-src">Email reply</span></p></li>
-                <li><span class="cf-tag cf-t-prob">Probabilistic</span><p>Most likely cause: a legal order served on the registrar.<span class="cf-src">Combined evidence</span></p></li>
-                <li><span class="cf-tag cf-t-det">Deterministic</span><p>The site moved to betbolt.io under a different registrar.<span class="cf-src">WHOIS</span></p></li>
-                <li><span class="cf-tag cf-t-prob">Probabilistic</span><p>The Costa Rica "license" is a data-processing registration, not a gambling license. The claimed Curaçao move is unverified.<span class="cf-src">Public records</span></p></li>
-                <li><span class="cf-tag cf-t-rep">Reported</span><p>Users reported withdrawals delayed 15+ days.<span class="cf-src">User complaints</span></p></li>
+              <ul class="findings">
+                <li><span class="tag t-det">Deterministic</span><p>Domain status was clientHold, set by the registrar (Namecheap).<span class="src">WHOIS</span></p></li>
+                <li><span class="tag t-rep">Reported</span><p>The registrar's legal team cited legal and operational issues.<span class="src">Email reply</span></p></li>
+                <li><span class="tag t-prob">Probabilistic</span><p>Most likely cause: a legal order served on the registrar.<span class="src">Combined evidence</span></p></li>
+                <li><span class="tag t-det">Deterministic</span><p>The site moved to betbolt.io under a different registrar.<span class="src">WHOIS</span></p></li>
+                <li><span class="tag t-prob">Probabilistic</span><p>The Costa Rica "license" is a data-processing registration, not a gambling license. The claimed Curaçao move is unverified.<span class="src">Public records</span></p></li>
+                <li><span class="tag t-rep">Reported</span><p>Users reported withdrawals delayed 15+ days.<span class="src">User complaints</span></p></li>
               </ul>
             </div>
             <div>
               <h4>How I worked</h4>
-              <ol class="cf-method">
+              <ol class="method">
                 <li>Listed possible causes: seizure, registrar dispute, trademark claim, blacklisting, DNS fault.</li>
                 <li>Checked WHOIS status codes and DNS records.</li>
                 <li>Contacted the registrar's legal team.</li>
@@ -678,70 +724,64 @@
               </ol>
               <h4>Delivered</h4>
               <p>Cause-of-outage verdict with a timeline, a license assessment and a founder profile.</p>
-              <p class="cf-tools"><span>Sources and tools</span>WHOIS/RDAP · DNS lookups · Registrar contact · UK Companies House</p>
-              <p class="cf-withheld">Founder identity withheld in this summary.</p>
+              <p class="tools"><span>Sources and tools</span>WHOIS/RDAP · DNS lookups · Registrar contact · UK Companies House</p>
+              <p class="withheld">Founder identity withheld in this summary.</p>
             </div>
           </div>
         </details>
-        <div class="cf-published">
-          <span class="cf-pub-no">Published as <b>INVG-2025-003</b></span>
-          <a class="primary" href="https://docs.google.com/document/d/1Xt2egKXMHDtbsM5XRxKOJDekoFGO29K8O4QJa-qa0w4/export?format=pdf" target="_blank" rel="noopener">Download full report ↓</a>
-          <a href="article-betbolt-investigation.html">Read in plain language →</a>
+        <div class="published">
+          <span class="pub-no">Published as <b>INVG-2025-003</b></span>
+          <a class="lnk primary" href="https://docs.google.com/document/d/1Xt2egKXMHDtbsM5XRxKOJDekoFGO29K8O4QJa-qa0w4/export?format=pdf" target="_blank" rel="noopener">Download full report ↓</a>
+          <a class="lnk" href="article-betbolt-investigation.html">Read in plain language →</a>
         </div>
       </article>
 
-      <!-- ============ CASE: Skin.Club founders ============ -->
-      <article class="dossier cf-case" data-groups="osint" id="skinclub-founders">
-        <div class="doss-top">
-          <div class="left">
-            <span>Discipline: <b class="neon">OSINT attribution</b></span>
-            <span>Scope: <b>Corporate research</b></span>
-          </div>
-          <div class="right">
-            <span>Period: <b>July 2025</b></span>
-            <span class="classification">PUBLIC SUMMARY</span>
-          </div>
-        </div>
-        <div class="doss-body">
-          <div>
-            <p class="cf-platform">Skin.Club</p>
+      <!-- ============ Skin.Club founders ============ -->
+      <article class="case" data-groups="osint" id="skinclub-founders">
+        <header class="case-head">
+          <div><span>OSINT attribution</span><span>Corporate research</span></div>
+          <div><span>July 2025</span></div>
+        </header>
+        <div class="case-body">
+          <div class="case-main">
+            <p class="platform">Skin.Club</p>
             <h3>Finding the founders of an anonymous case-opening site</h3>
-            <p class="cf-q">Who founded a CS2 case-opening site that keeps its owners anonymous?</p>
-            <p class="cf-tldr">A team member's Discord post about a co-founder's new startup was the opening. That startup's public founding team, checked against company and career records, points to four likely co-founders who also built two other gaming platforms.</p>
-            <div class="cf-stats">
-              <div><div class="cf-num">4</div><div class="cf-lbl">Likely co-founders identified</div></div>
-              <div><div class="cf-num">2</div><div class="cf-lbl">Other gaming platforms linked</div></div>
-              <div><div class="cf-num">0</div><div class="cf-lbl">Licenses disclosed since 2018 launch</div></div>
+            <p class="question">Who founded a CS2 case-opening site that keeps its owners anonymous?</p>
+            <p class="tldr">A team member's Discord post about a co-founder's new startup was the opening. That startup's public founding team, checked against company and career records, points to four likely co-founders who also built two other gaming platforms.</p>
+            <div class="stats">
+              <div class="stat"><span class="num">4</span><span class="lbl">Likely co-founders identified</span></div>
+              <div class="stat"><span class="num">2</span><span class="lbl">Other gaming platforms linked</span></div>
+              <div class="stat"><span class="num">0</span><span class="lbl">Licenses disclosed since 2018 launch</span></div>
             </div>
           </div>
-          <aside class="cf-chainwrap" aria-label="Evidence chain">
-            <span class="cf-aside-lbl">Evidence chain</span>
-            <ol class="cf-chain">
-              <li class="cf-node"><b>Team Discord post</b><span class="cf-addr">29 Dec 2022</span></li>
-              <li class="cf-edge">Names new startup</li>
-              <li class="cf-node"><b>Startup founding team</b><span class="cf-addr">4 people</span></li>
-              <li class="cf-edge">Career records</li>
-              <li class="cf-node"><b>2 linked platforms</b></li>
+          <aside class="chainwrap" aria-label="Evidence chain">
+            <span class="aside-lbl">Evidence chain</span>
+            <ol class="chain">
+              <li class="node"><b>Team Discord post</b><span class="addr">29 Dec 2022</span></li>
+              <li class="edge">Names new startup</li>
+              <li class="node"><b>Startup founding team</b><span class="addr">4 people</span></li>
+              <li class="edge">Career records</li>
+              <li class="node"><b>2 linked platforms</b></li>
             </ol>
-            <p class="cf-chain-note">One founder's own public post about building the new startup matched the Discord announcement.</p>
+            <p class="chain-note">One founder's own public post about building the new startup matched the Discord announcement.</p>
           </aside>
         </div>
-        <details class="cf-more">
+        <details class="more">
           <summary>Findings, method and deliverable</summary>
-          <div class="cf-more-grid">
+          <div class="more-grid">
             <div>
               <h4>Findings</h4>
-              <ul class="cf-findings">
-                <li><span class="cf-tag cf-t-rep">Reported</span><p>A team member publicly said a Skin.Club co-founder launched a named startup.<span class="cf-src">Discord screenshot</span></p></li>
-                <li><span class="cf-tag cf-t-det">Deterministic</span><p>That startup's founding team is four people.<span class="cf-src">Company profiles</span></p></li>
-                <li><span class="cf-tag cf-t-prob">Probabilistic</span><p>One founder's own post confirms he built it, matching the Discord claim.<span class="cf-src">Founder's public post</span></p></li>
-                <li><span class="cf-tag cf-t-prob">Probabilistic</span><p>The same group is linked to an MMO trading marketplace (2017) and another case-opening site.<span class="cf-src">Career records</span></p></li>
-                <li><span class="cf-tag cf-t-det">Deterministic</span><p>The startup was acquired by a games-payments company in July 2024.<span class="cf-src">Public announcement</span></p></li>
+              <ul class="findings">
+                <li><span class="tag t-rep">Reported</span><p>A team member publicly said a Skin.Club co-founder launched a named startup.<span class="src">Discord screenshot</span></p></li>
+                <li><span class="tag t-det">Deterministic</span><p>That startup's founding team is four people.<span class="src">Company profiles</span></p></li>
+                <li><span class="tag t-prob">Probabilistic</span><p>One founder's own post confirms he built it, matching the Discord claim.<span class="src">Founder's public post</span></p></li>
+                <li><span class="tag t-prob">Probabilistic</span><p>The same group is linked to an MMO trading marketplace (2017) and another case-opening site.<span class="src">Career records</span></p></li>
+                <li><span class="tag t-det">Deterministic</span><p>The startup was acquired by a games-payments company in July 2024.<span class="src">Public announcement</span></p></li>
               </ul>
             </div>
             <div>
               <h4>How I worked</h4>
-              <ol class="cf-method">
+              <ol class="method">
                 <li>Reviewed the site and its terms. No license or owner is named.</li>
                 <li>Found a 29 Dec 2022 Discord post saying a co-founder had launched a new startup.</li>
                 <li>Identified that startup's four founders through public company profiles.</li>
@@ -750,63 +790,57 @@
               </ol>
               <h4>Delivered</h4>
               <p>Founder profiles and a connection map delivered to the client.</p>
-              <p class="cf-tools"><span>Sources and tools</span>Discord archives · Crunchbase · LinkedIn · Company records</p>
-              <p class="cf-withheld">Founder names and profiles withheld in this summary.</p>
+              <p class="tools"><span>Sources and tools</span>Discord archives · Crunchbase · LinkedIn · Company records</p>
+              <p class="withheld">Founder names and profiles withheld in this summary.</p>
             </div>
           </div>
         </details>
       </article>
 
-      <!-- ============ CASE: Luck.io influencer payments ============ -->
-      <article class="dossier cf-case" data-groups="onchain" id="luckio-influencer-payments">
-        <div class="doss-top">
-          <div class="left">
-            <span>Discipline: <b class="neon">On-chain tracing</b></span>
-            <span>Chain: <b>Solana</b></span>
-          </div>
-          <div class="right">
-            <span>Period: <b>Data to 28 Jul 2025</b></span>
-            <span class="classification">PUBLISHED REPORT</span>
-          </div>
-        </div>
-        <div class="doss-body">
-          <div>
-            <p class="cf-platform">Luck.io</p>
+      <!-- ============ Luck.io influencer payments ============ -->
+      <article class="case" data-groups="onchain" id="luckio-influencer-payments">
+        <header class="case-head">
+          <div><span>On-chain tracing</span><span>Solana</span></div>
+          <div><span>Data to 28 Jul 2025</span><span class="pub">Published report</span></div>
+        </header>
+        <div class="case-body">
+          <div class="case-main">
+            <p class="platform">Luck.io</p>
             <h3>How much the casino paid its promoters</h3>
-            <p class="cf-q">How much was the casino paying the influencers who promoted it?</p>
-            <p class="cf-tldr">I traced payments from the casino's cold wallet through a single distribution wallet to 9 promoter wallets, totalling about $390K (data up to 28 Jul 2025).</p>
-            <div class="cf-stats">
-              <div><div class="cf-num">~$390K</div><div class="cf-lbl">Paid to promoters</div></div>
-              <div><div class="cf-num">9</div><div class="cf-lbl">Promoter wallets identified</div></div>
-              <div><div class="cf-num">$156K</div><div class="cf-lbl">Largest single payee</div></div>
+            <p class="question">How much was the casino paying the influencers who promoted it?</p>
+            <p class="tldr">I traced payments from the casino's cold wallet through a single distribution wallet to 9 promoter wallets, totalling about $390K (data up to 28 Jul 2025).</p>
+            <div class="stats">
+              <div class="stat"><span class="num">~$390K</span><span class="lbl">Paid to promoters</span></div>
+              <div class="stat"><span class="num">9</span><span class="lbl">Promoter wallets identified</span></div>
+              <div class="stat"><span class="num">$156K</span><span class="lbl">Largest single payee</span></div>
             </div>
           </div>
-          <aside class="cf-chainwrap" aria-label="Evidence chain">
-            <span class="cf-aside-lbl">Evidence chain</span>
-            <ol class="cf-chain">
-              <li class="cf-node"><b>Casino cold wallet</b><span class="cf-addr">4xMa…YYBc</span></li>
-              <li class="cf-edge">Transfers</li>
-              <li class="cf-node"><b>Distribution wallet</b><span class="cf-addr">F2jz…9J4F</span></li>
-              <li class="cf-edge">Payouts</li>
-              <li class="cf-node"><b>9 promoter wallets</b><span class="cf-addr">~$390K</span></li>
+          <aside class="chainwrap" aria-label="Evidence chain">
+            <span class="aside-lbl">Evidence chain</span>
+            <ol class="chain">
+              <li class="node"><b>Casino cold wallet</b><span class="addr">4xMa…YYBc</span></li>
+              <li class="edge">Transfers</li>
+              <li class="node"><b>Distribution wallet</b><span class="addr">F2jz…9J4F</span></li>
+              <li class="edge">Payouts</li>
+              <li class="node"><b>9 promoter wallets</b><span class="addr">~$390K</span></li>
             </ol>
-            <p class="cf-chain-note">Payouts per promoter: ~$156K, $99K, $58K, $28K, $21K, $10K, $7K, $6K, $5K.</p>
+            <p class="chain-note">Payouts per promoter: ~$156K, $99K, $58K, $28K, $21K, $10K, $7K, $6K, $5K.</p>
           </aside>
         </div>
-        <details class="cf-more">
+        <details class="more">
           <summary>Findings, method and deliverable</summary>
-          <div class="cf-more-grid">
+          <div class="more-grid">
             <div>
               <h4>Findings</h4>
-              <ul class="cf-findings">
-                <li><span class="cf-tag cf-t-det">Deterministic</span><p>Payments flow cold wallet → distribution wallet → promoters.<span class="cf-src">Transfer records</span></p></li>
-                <li><span class="cf-tag cf-t-det">Deterministic</span><p>9 promoters received about $390K in total, from $156K down to $5K each.<span class="cf-src">Transfer totals</span></p></li>
-                <li><span class="cf-tag cf-t-prob">Probabilistic</span><p>Each receiving wallet matched to a named promoter.<span class="cf-src">Public posts, wallet history</span></p></li>
+              <ul class="findings">
+                <li><span class="tag t-det">Deterministic</span><p>Payments flow cold wallet → distribution wallet → promoters.<span class="src">Transfer records</span></p></li>
+                <li><span class="tag t-det">Deterministic</span><p>9 promoters received about $390K in total, from $156K down to $5K each.<span class="src">Transfer totals</span></p></li>
+                <li><span class="tag t-prob">Probabilistic</span><p>Each receiving wallet matched to a named promoter.<span class="src">Public posts, wallet history</span></p></li>
               </ul>
             </div>
             <div>
               <h4>How I worked</h4>
-              <ol class="cf-method">
+              <ol class="method">
                 <li>Identified the casino's cold wallet and the distribution wallet it funded.</li>
                 <li>Followed every outgoing transfer from the distributor.</li>
                 <li>Matched recipient wallets to promoters using their public posts, wallet reveals and on-chain history.</li>
@@ -814,72 +848,66 @@
               </ol>
               <h4>Delivered</h4>
               <p>Per-promoter payment table and transaction map the client could use to judge how much of the casino's buzz was paid.</p>
-              <p class="cf-tools"><span>Sources and tools</span>Solscan · Arkham</p>
-              <p class="cf-withheld">Promoter names withheld in this summary.</p>
+              <p class="tools"><span>Sources and tools</span>Solscan · Arkham</p>
+              <p class="withheld">Promoter names withheld in this summary.</p>
             </div>
           </div>
         </details>
-        <div class="cf-published">
-          <span class="cf-pub-no">Published as <b>INVG-2025-002</b></span>
-          <a class="primary" href="https://docs.google.com/document/d/1EfE0NoPqd5JnNkEyyxiYQgOMSNT-ZAZcoBadZukLFEc/export?format=pdf" target="_blank" rel="noopener">Download full report ↓</a>
-          <a href="article-luckio-influencers.html">Read in plain language →</a>
+        <div class="published">
+          <span class="pub-no">Published as <b>INVG-2025-002</b></span>
+          <a class="lnk primary" href="https://docs.google.com/document/d/1EfE0NoPqd5JnNkEyyxiYQgOMSNT-ZAZcoBadZukLFEc/export?format=pdf" target="_blank" rel="noopener">Download full report ↓</a>
+          <a class="lnk" href="article-luckio-influencers.html">Read in plain language →</a>
         </div>
       </article>
 
-      <!-- ============ CASE: Rollbit RLB supply ============ -->
-      <article class="dossier cf-case" data-groups="onchain dd" id="rollbit-rlb-supply">
-        <div class="doss-top">
-          <div class="left">
-            <span>Discipline: <b class="neon">Token forensics</b></span>
-            <span>Chains: <b>Solana · Ethereum</b></span>
-          </div>
-          <div class="right">
-            <span>Period: <b>Nov 2021 – Mar 2025</b></span>
-            <span class="classification">PUBLIC SUMMARY</span>
-          </div>
-        </div>
-        <div class="doss-body">
-          <div>
-            <p class="cf-platform">Rollbit</p>
+      <!-- ============ Rollbit RLB supply ============ -->
+      <article class="case" data-groups="onchain dd" id="rollbit-rlb-supply">
+        <header class="case-head">
+          <div><span>Token forensics</span><span>Solana · Ethereum</span></div>
+          <div><span>Covers Nov 2021 – Mar 2025</span></div>
+        </header>
+        <div class="case-body">
+          <div class="case-main">
+            <p class="platform">Rollbit</p>
             <h3>RLB token supply and treasury audit</h3>
-            <p class="cf-q">Was RLB's "fully circulating supply" claim true, and where did the team's tokens go?</p>
-            <p class="cf-tldr">I traced RLB from mint to burn on two chains. A dormant wallet holding 50M RLB was activated with gas from Rollbit's own wallets, then sold everything for $1.43M. After the move to Ethereum, Rollbit wallets still held about 60% of circulating supply.</p>
-            <div class="cf-stats">
-              <div><div class="cf-num">5B</div><div class="cf-lbl">RLB minted on Solana, 23 Nov 2021</div></div>
-              <div><div class="cf-num">$1.43M</div><div class="cf-lbl">Sold from a team-linked wallet</div></div>
-              <div><div class="cf-num">59.6%</div><div class="cf-lbl">Of circulating supply held by Rollbit wallets</div></div>
+            <p class="question">Was RLB's "fully circulating supply" claim true, and where did the team's tokens go?</p>
+            <p class="tldr">I traced RLB from mint to burn on two chains. A dormant wallet holding 50M RLB was activated with gas from Rollbit's own wallets, then sold everything for $1.43M. After the move to Ethereum, Rollbit wallets still held about 60% of circulating supply.</p>
+            <div class="stats">
+              <div class="stat"><span class="num">5B</span><span class="lbl">RLB minted on Solana, 23 Nov 2021</span></div>
+              <div class="stat"><span class="num">$1.43M</span><span class="lbl">Sold from a team-linked wallet</span></div>
+              <div class="stat"><span class="num">59.6%</span><span class="lbl">Of circulating supply held by Rollbit wallets</span></div>
             </div>
           </div>
-          <aside class="cf-chainwrap" aria-label="Evidence chain">
-            <span class="cf-aside-lbl">Evidence chain</span>
-            <ol class="cf-chain">
-              <li class="cf-node"><b>Rollbit treasury</b></li>
-              <li class="cf-edge">50M RLB · 26 Nov 2021</li>
-              <li class="cf-node"><b>Dormant wallet</b><span class="cf-addr">5E2e…Kxnr</span></li>
-              <li class="cf-edge">Sold on OpenBook</li>
-              <li class="cf-node"><b>$1.43M USDT</b></li>
+          <aside class="chainwrap" aria-label="Evidence chain">
+            <span class="aside-lbl">Evidence chain</span>
+            <ol class="chain">
+              <li class="node"><b>Rollbit treasury</b></li>
+              <li class="edge">50M RLB · 26 Nov 2021</li>
+              <li class="node"><b>Dormant wallet</b><span class="addr">5E2e…Kxnr</span></li>
+              <li class="edge">Sold on OpenBook</li>
+              <li class="node"><b>$1.43M USDT</b></li>
             </ol>
-            <p class="cf-chain-note">Gas to wake the wallet in Jan 2023 came from the deployer (0.1 SOL) and Rollbit's RLB deposit wallet (1.51 SOL). That link ties it to the team.</p>
+            <p class="chain-note">Gas to wake the wallet in Jan 2023 came from the deployer (0.1 SOL) and Rollbit's RLB deposit wallet (1.51 SOL). That link ties it to the team.</p>
           </aside>
         </div>
-        <details class="cf-more">
+        <details class="more">
           <summary>Findings, method and deliverable</summary>
-          <div class="cf-more-grid">
+          <div class="more-grid">
             <div>
               <h4>Findings</h4>
-              <ul class="cf-findings">
-                <li><span class="cf-tag cf-t-det">Deterministic</span><p>5B RLB minted in 5 transactions. 4.8B went to the treasury, and 96.4% of that sat in one centralized hot wallet.<span class="cf-src">Mint and transfer records</span></p></li>
-                <li><span class="cf-tag cf-t-det">Deterministic</span><p>50M RLB moved to a separate wallet that stayed dormant until Jan 2023, when the deployer and the RLB deposit wallet paid its gas.<span class="cf-src">Gas-funding transfers</span></p></li>
-                <li><span class="cf-tag cf-t-det">Deterministic</span><p>That wallet sold all 50M RLB on OpenBook by 16 Feb 2023 for $1.43M USDT and turned $300K into 13,000 SOL.<span class="cf-src">DEX trade history</span></p></li>
-                <li><span class="cf-tag cf-t-det">Deterministic</span><p>The liquidity wallet pulled 3M RLB + 7,661 USDT from the pool (Nov 2022), then sold on Orca for 1.74M USDC (Aug 2023).<span class="cf-src">Pool and swap records</span></p></li>
-                <li><span class="cf-tag cf-t-det">Deterministic</span><p>On Ethereum: deployer holds 1.1B (22%), 2.9B (57%) is burned, and 59.6% of the ~2.1B circulating sits in Rollbit wallets. Only ~1.2% is in the main pool, so a $500K sale moves price ~13%.<span class="cf-src">Holder balances, pool depth</span></p></li>
-                <li><span class="cf-tag cf-t-det">Deterministic</span><p>Jan–Nov 2024: 895.79M RLB burned, while 895.68M was sent to the hot wallet over the same period.<span class="cf-src">Token transfer totals</span></p></li>
-                <li><span class="cf-tag cf-t-rep">Reported</span><p>No updated tokenomics were published after migration, despite a promised breakdown on 1 May 2024.<span class="cf-src">Public posts</span></p></li>
+              <ul class="findings">
+                <li><span class="tag t-det">Deterministic</span><p>5B RLB minted in 5 transactions. 4.8B went to the treasury, and 96.4% of that sat in one centralized hot wallet.<span class="src">Mint and transfer records</span></p></li>
+                <li><span class="tag t-det">Deterministic</span><p>50M RLB moved to a separate wallet that stayed dormant until Jan 2023, when the deployer and the RLB deposit wallet paid its gas.<span class="src">Gas-funding transfers</span></p></li>
+                <li><span class="tag t-det">Deterministic</span><p>That wallet sold all 50M RLB on OpenBook by 16 Feb 2023 for $1.43M USDT and turned $300K into 13,000 SOL.<span class="src">DEX trade history</span></p></li>
+                <li><span class="tag t-det">Deterministic</span><p>The liquidity wallet pulled 3M RLB + 7,661 USDT from the pool (Nov 2022), then sold on Orca for 1.74M USDC (Aug 2023).<span class="src">Pool and swap records</span></p></li>
+                <li><span class="tag t-det">Deterministic</span><p>On Ethereum: deployer holds 1.1B (22%), 2.9B (57%) is burned, and 59.6% of the ~2.1B circulating sits in Rollbit wallets. Only ~1.2% is in the main pool, so a $500K sale moves price ~13%.<span class="src">Holder balances, pool depth</span></p></li>
+                <li><span class="tag t-det">Deterministic</span><p>Jan–Nov 2024: 895.79M RLB burned, while 895.68M was sent to the hot wallet over the same period.<span class="src">Token transfer totals</span></p></li>
+                <li><span class="tag t-rep">Reported</span><p>No updated tokenomics were published after migration, despite a promised breakdown on 1 May 2024.<span class="src">Public posts</span></p></li>
               </ul>
             </div>
             <div>
               <h4>How I worked</h4>
-              <ol class="cf-method">
+              <ol class="method">
                 <li>Rebuilt the Solana mint: deployer, treasury, airdrop, liquidity wallet and a fifth wallet funded three days after launch.</li>
                 <li>Followed gas funding to tie dormant wallets back to the team.</li>
                 <li>Tracked liquidity removal and sales on Raydium, Orca and OpenBook.</li>
@@ -888,7 +916,7 @@
               </ol>
               <h4>Delivered</h4>
               <p>Wallet map from mint to burn, a supply reconciliation table and a timeline. Together they show the "fully circulating" claim does not match on-chain holdings.</p>
-              <p class="cf-tools"><span>Sources and tools</span>Solscan · Etherscan · Arkham · DEX trade data</p>
+              <p class="tools"><span>Sources and tools</span>Solscan · Etherscan · Arkham · DEX trade data</p>
             </div>
           </div>
         </details>
@@ -898,58 +926,58 @@
   </div>
 </section>
 
-<section id="reports" class="cf-sec">
+<section id="reports">
   <div class="wrap">
-    <div class="cf-sec-head rv">
+    <div class="sec-head">
       <span class="eyebrow">Formal Reports</span>
       <h2>On the public record</h2>
       <p>Four investigations have been written up as formal reports with a permanent case number, and remain downloadable in full. Each is also published in plain language for non-technical readers.</p>
     </div>
-    <ul class="cf-reports">
-      <li class="rv">
-        <div class="cf-rep-no">INVG-2025-001</div>
+    <ul class="reports">
+      <li>
+        <div class="rep-no">INVG-2025-001</div>
         <div>
           <h3>Provably Fair or Provably Centralized? Investigating Luck.io's Core Claims</h3>
           <p>A forensic examination of the Solana gambling platform Luck.io and the two claims at the centre of its marketing: that user funds remain non-custodial, and that game outcomes are provably fair.</p>
-          <div class="cf-rep-links">
-            <a class="primary" href="https://docs.google.com/document/d/1n3FgDfK1hiWsM2eEdIh3sogpQdDOc44ptoclfhFoRqM/export?format=pdf" target="_blank" rel="noopener">Download report ↓</a>
-            <a href="article-luckio-provably-fair.html">Read in plain language →</a>
-            <a href="#luckio-custody">See case summary ↑</a>
+          <div class="rep-links">
+            <a class="lnk primary" href="https://docs.google.com/document/d/1n3FgDfK1hiWsM2eEdIh3sogpQdDOc44ptoclfhFoRqM/export?format=pdf" target="_blank" rel="noopener">Download report ↓</a>
+            <a class="lnk" href="article-luckio-provably-fair.html">Read in plain language →</a>
+            <a class="lnk" href="#luckio-custody">See case summary ↑</a>
           </div>
         </div>
       </li>
-      <li class="rv">
-        <div class="cf-rep-no">INVG-2025-002<br><span class="cf-when">28 July 2025</span></div>
+      <li>
+        <div class="rep-no">INVG-2025-002<span class="rep-date">28 July 2025</span></div>
         <div>
           <h3>Follow the Money: Luck.io Influencer Payment Analysis</h3>
           <p>Tracing promoter payments from the platform's cold wallet through a single distribution wallet out to nine identified influencer wallets, with per-promoter totals.</p>
-          <div class="cf-rep-links">
-            <a class="primary" href="https://docs.google.com/document/d/1EfE0NoPqd5JnNkEyyxiYQgOMSNT-ZAZcoBadZukLFEc/export?format=pdf" target="_blank" rel="noopener">Download report ↓</a>
-            <a href="article-luckio-influencers.html">Read in plain language →</a>
-            <a href="#luckio-influencer-payments">See case summary ↑</a>
+          <div class="rep-links">
+            <a class="lnk primary" href="https://docs.google.com/document/d/1EfE0NoPqd5JnNkEyyxiYQgOMSNT-ZAZcoBadZukLFEc/export?format=pdf" target="_blank" rel="noopener">Download report ↓</a>
+            <a class="lnk" href="article-luckio-influencers.html">Read in plain language →</a>
+            <a class="lnk" href="#luckio-influencer-payments">See case summary ↑</a>
           </div>
         </div>
       </li>
-      <li class="rv">
-        <div class="cf-rep-no">INVG-2025-003</div>
+      <li>
+        <div class="rep-no">INVG-2025-003</div>
         <div>
           <h3>The BetBolt Investigation</h3>
           <p>Why the platform's main domain was disabled by its registrar, whether its licensing claims hold up, and who sits behind the anonymous CEO account.</p>
-          <div class="cf-rep-links">
-            <a class="primary" href="https://docs.google.com/document/d/1Xt2egKXMHDtbsM5XRxKOJDekoFGO29K8O4QJa-qa0w4/export?format=pdf" target="_blank" rel="noopener">Download report ↓</a>
-            <a href="article-betbolt-investigation.html">Read in plain language →</a>
-            <a href="#betbolt-domain">See case summary ↑</a>
+          <div class="rep-links">
+            <a class="lnk primary" href="https://docs.google.com/document/d/1Xt2egKXMHDtbsM5XRxKOJDekoFGO29K8O4QJa-qa0w4/export?format=pdf" target="_blank" rel="noopener">Download report ↓</a>
+            <a class="lnk" href="article-betbolt-investigation.html">Read in plain language →</a>
+            <a class="lnk" href="#betbolt-domain">See case summary ↑</a>
           </div>
         </div>
       </li>
-      <li class="rv">
-        <div class="cf-rep-no">INVG-2025-004</div>
+      <li>
+        <div class="rep-no">INVG-2025-004</div>
         <div>
           <h3>KYC on Demand: Rollbit's Selective Compliance</h3>
           <p>How identity-verification requirements were applied unevenly across accounts, and what that implies for the platform's stated compliance posture.</p>
-          <div class="cf-rep-links">
-            <a class="primary" href="https://docs.google.com/document/d/1FnOqN6BKoNMI-ZCf6opiKlsR4ZIhnb0IyDZ9kPPR5Po/export?format=pdf" target="_blank" rel="noopener">Download report ↓</a>
-            <a href="article-rollbit-kyc.html">Read in plain language →</a>
+          <div class="rep-links">
+            <a class="lnk primary" href="https://docs.google.com/document/d/1FnOqN6BKoNMI-ZCf6opiKlsR4ZIhnb0IyDZ9kPPR5Po/export?format=pdf" target="_blank" rel="noopener">Download report ↓</a>
+            <a class="lnk" href="article-rollbit-kyc.html">Read in plain language →</a>
           </div>
         </div>
       </li>
@@ -957,38 +985,38 @@
   </div>
 </section>
 
-<section id="method" class="cf-sec">
+<section id="method" class="band">
   <div class="wrap">
-    <div class="cf-sec-head rv">
+    <div class="sec-head">
       <span class="eyebrow">Method</span>
       <h2>How I grade evidence</h2>
       <p>Every finding in a report says how sure I am and why. A reader can see at a glance what is proven and what is still a lead — and nothing gets stated more confidently than its source allows.</p>
     </div>
-    <div class="custody-grid rv">
-      <div><span class="cf-tag cf-t-det">Deterministic</span><p>Directly visible on-chain or in a primary record — a transfer, a registry entry, a domain record.</p></div>
-      <div><span class="cf-tag cf-t-prob">Probabilistic</span><p>A strong attribution built from several linked pieces of evidence that independently point the same way.</p></div>
-      <div><span class="cf-tag cf-t-heur">Heuristic</span><p>A pattern-based inference, such as repeated timing or wallet behaviour. Useful, but always flagged as such.</p></div>
-      <div><span class="cf-tag cf-t-rep">Reported</span><p>A third-party statement: an audit, a court filing, news coverage or user complaints.</p></div>
+    <div class="grade">
+      <div><span class="tag t-det">Deterministic</span><p>Directly visible on-chain or in a primary record — a transfer, a registry entry, a domain record.</p></div>
+      <div><span class="tag t-prob">Probabilistic</span><p>A strong attribution built from several linked pieces of evidence that independently point the same way.</p></div>
+      <div><span class="tag t-heur">Heuristic</span><p>A pattern-based inference, such as repeated timing or wallet behaviour. Useful, but always flagged as such.</p></div>
+      <div><span class="tag t-rep">Reported</span><p>A third-party statement: an audit, a court filing, news coverage or user complaints.</p></div>
     </div>
-    <ol class="cf-steps">
-      <li class="rv"><b>Pin down the question</b><span>Who runs it, where did the money go, is the claim true. One question per report.</span></li>
-      <li class="rv d1"><b>Collect primary records</b><span>Transactions, registries, domain records, terms, archived pages. Saved with dates.</span></li>
-      <li class="rv d2"><b>Pivot on indicators</b><span>A username, a wallet, a company number, a footer. Each one leads to the next.</span></li>
-      <li class="rv"><b>Verify each link</b><span>A second, independent source before a link is treated as solid.</span></li>
-      <li class="rv d1"><b>Grade and limit</b><span>Tag each finding by confidence and write down what the evidence cannot show.</span></li>
-      <li class="rv d2"><b>Report in plain words</b><span>Fund-flow maps, timelines and verdict tables a non-technical reader can follow.</span></li>
+    <ol class="steps">
+      <li><b>Pin down the question</b><span>Who runs it, where did the money go, is the claim true. One question per report.</span></li>
+      <li><b>Collect primary records</b><span>Transactions, registries, domain records, terms, archived pages. Saved with dates.</span></li>
+      <li><b>Pivot on indicators</b><span>A username, a wallet, a company number, a footer. Each one leads to the next.</span></li>
+      <li><b>Verify each link</b><span>A second, independent source before a link is treated as solid.</span></li>
+      <li><b>Grade and limit</b><span>Tag each finding by confidence and write down what the evidence cannot show.</span></li>
+      <li><b>Report in plain words</b><span>Fund-flow maps, timelines and verdict tables a non-technical reader can follow.</span></li>
     </ol>
   </div>
 </section>
 
-<section id="services" class="cf-sec">
-  <div class="wrap cf-two">
+<section id="services">
+  <div class="wrap two">
     <div>
-      <div class="cf-sec-head rv">
+      <div class="sec-head">
         <span class="eyebrow">Capabilities</span>
         <h2>What I do</h2>
       </div>
-      <ul class="cf-svc rv">
+      <ul class="svc">
         <li><b>Fund tracing</b><span>Follow stolen or misused funds across wallets, bridges and exchanges on Bitcoin, Ethereum, Solana and Tron.</span></li>
         <li><b>Identity attribution</b><span>Link pseudonymous founders, promoters and operators to real people and companies.</span></li>
         <li><b>Platform due diligence</b><span>Test custody, licensing, token-supply and fairness claims against what the chain and public records show.</span></li>
@@ -996,22 +1024,22 @@
         <li><b>AML and compliance support</b><span>SAR/STR case narratives, sanctions checks and red-flag reviews.</span></li>
       </ul>
     </div>
-    <div class="cf-kit">
-      <div class="cf-sec-head rv d1">
+    <div class="kit">
+      <div class="sec-head">
         <span class="eyebrow">Toolkit</span>
         <h2>What I work with</h2>
       </div>
-      <dl class="rv d1">
+      <dl>
         <dt>Analytics</dt><dd>Chainalysis Reactor, TRM Labs, Elliptic, Arkham</dd>
         <dt>Explorers</dt><dd>Etherscan, Solscan, Tronscan, mempool.space</dd>
         <dt>OSINT</dt><dd>Flashpoint, WHOIS and domain records, Wayback Machine, company registries, username history</dd>
         <dt>Code</dt><dd>Python, SQL, TypeScript</dd>
         <dt>Certified</dt><dd>Chainalysis CCAI and CCI · NISM CALM (anti-money laundering)</dd>
       </dl>
-      <div class="cf-tracer rv d2">
+      <div class="tracer">
         <b>Investigatah Tracer</b>
         <p>An open-source fund-tracing platform I built: recursive value tracing through swaps and bridges, with exchange and mixer labels and deterministic bridge detection.</p>
-        <div class="cf-links">
+        <div class="links">
           <a href="https://app.investigatah.com" target="_blank" rel="noopener">app.investigatah.com ↗</a>
           <a href="https://github.com/ritix101/Investigatah-Tracer" target="_blank" rel="noopener">Source on GitHub ↗</a>
         </div>
@@ -1019,23 +1047,23 @@
     </div>
   </div>
   <div class="wrap">
-    <ul class="cf-timeline">
-      <li class="rv">
-        <span class="cf-when">2025 – 2026</span>
+    <ul class="timeline">
+      <li>
+        <span class="when">2025 – 2026</span>
         <div>
           <b>Blockchain Forensic Consultant (contract), Moonrail Ltd</b>
           <p>Investigations into crypto-casino operators: fund flows, promoter payments, founder attribution and AML/KYC red flags. Most of the casino cases on this page come from this work.</p>
         </div>
       </li>
-      <li class="rv">
-        <span class="cf-when">2024 – present</span>
+      <li>
+        <span class="when">2024 – present</span>
         <div>
           <b>Founder and lead investigator, INVESTIGATAH</b>
           <p>Independent blockchain and OSINT investigations for clients, plus public reports.</p>
         </div>
       </li>
-      <li class="rv">
-        <span class="cf-when">2026</span>
+      <li>
+        <span class="when">2026</span>
         <div>
           <b>B.Tech, Artificial Intelligence and Machine Learning</b>
           <p>Madhav Institute of Technology and Science, Gwalior.</p>
@@ -1045,15 +1073,15 @@
   </div>
 </section>
 
-<section class="cta-band" id="contact">
-  <div class="wrap rv">
-    <h2>Have a case we <span class="green">should look into?</span></h2>
+<section id="contact" class="band contact">
+  <div class="wrap">
+    <h2>Have a case?</h2>
     <p>Send the wallet, the platform or the name you are stuck on, and what you need to know. You will get an honest answer on what can be found and how long it will take. Tip-offs, victim reports and whistleblower leads are handled in strict confidence.</p>
-    <div class="cf-mailrow">
-      <span class="cf-mail" id="cf-mailaddr">ritix@investigatah.com</span>
-      <button type="button" class="cf-copy" id="cf-copybtn">Copy email</button>
+    <div class="mailrow">
+      <span class="mail" id="mail">ritix@investigatah.com</span>
+      <button type="button" class="copy" id="copy">Copy email</button>
     </div>
-    <div class="cf-links cf-contact-links">
+    <div class="links">
       <a href="contact.html">Submit a case →</a>
       <a href="https://www.linkedin.com/in/ritik-jain-443812254" target="_blank" rel="noopener">LinkedIn ↗</a>
       <a href="https://github.com/ritix101" target="_blank" rel="noopener">GitHub ↗</a>
@@ -1062,75 +1090,74 @@
 </section>
 
 <footer>
-  <div class="wrap foot-grid">
-    <div>
-      <a href="index.html" class="logo"><span class="dot"></span>INVESTIGATAH</a>
-      <p>Specialized blockchain forensics and asset recovery agency. Dedicated to justice within the digital ecosystem.</p>
-    </div>
-    <div>
-      <h4>Navigate</h4>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="work.html">Work</a></li>
-        <li><a href="articles.html">Articles</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>On this page</h4>
-      <ul>
-        <li><a href="#cases">Case files</a></li>
-        <li><a href="#reports">Formal reports</a></li>
-        <li><a href="#method">Method</a></li>
-        <li><a href="#services">Capabilities</a></li>
-      </ul>
-    </div>
-  </div>
   <div class="wrap">
-    <p class="cf-disclaimer">Private individuals' names, birth dates and locations are withheld in these summaries. Wallet addresses are shortened. Findings are stated at the confidence their sources support.</p>
-  </div>
-  <div class="foot-hash" aria-hidden="true">
-    <div>
-      <span>0x4A7F…E19C ➝ TRACED</span><span>4xMajQJ7…YYBc ➝ FLAGGED</span><span>bc1qxy2k…0wlh ➝ FROZEN</span><span>0x9D21…77AB ➝ ATTRIBUTED</span><span>F2jzJBfW…9J4F ➝ TRACED</span>
-      <span>0x4A7F…E19C ➝ TRACED</span><span>4xMajQJ7…YYBc ➝ FLAGGED</span><span>bc1qxy2k…0wlh ➝ FROZEN</span><span>0x9D21…77AB ➝ ATTRIBUTED</span><span>F2jzJBfW…9J4F ➝ TRACED</span>
+    <div class="foot-grid">
+      <div>
+        <a href="index.html" class="logo"><span class="dot"></span>INVESTIGATAH</a>
+        <p>Specialized blockchain forensics and asset recovery agency. Dedicated to justice within the digital ecosystem.</p>
+      </div>
+      <div>
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="work.html">Work</a></li>
+          <li><a href="articles.html">Articles</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>On this page</h4>
+        <ul>
+          <li><a href="#cases">Case files</a></li>
+          <li><a href="#reports">Formal reports</a></li>
+          <li><a href="#method">Method</a></li>
+          <li><a href="#services">Capabilities</a></li>
+        </ul>
+      </div>
     </div>
-  </div>
-  <div class="wrap foot-base">
-    <span>© 2026 INVESTIGATAH — ALL RIGHTS RESERVED</span>
-    <span>ritix@investigatah.com</span>
+    <p class="disclaimer">Private individuals' names, birth dates and locations are withheld in these summaries. Wallet addresses are shortened. Findings are stated at the confidence their sources support.</p>
+    <div class="foot-base">
+      <span>© 2026 INVESTIGATAH — ALL RIGHTS RESERVED</span>
+      <span>ritix@investigatah.com</span>
+    </div>
   </div>
 </footer>
 
-<script src="js/main.js"></script>
 <script>
-/* Case filtering + email copy. Kept self-contained so js/main.js
-   (shared by every page) does not need to change. */
 (function () {
-  var btns = Array.prototype.slice.call(document.querySelectorAll('.cf-filters button'));
-  var cases = Array.prototype.slice.call(document.querySelectorAll('.cf-case'));
-  var count = document.getElementById('cf-count');
+  /* mobile nav */
+  var burger = document.querySelector('.burger');
+  var navLinks = document.querySelector('.nav-links');
+  if (burger && navLinks) {
+    burger.addEventListener('click', function () {
+      var open = navLinks.classList.toggle('open');
+      burger.setAttribute('aria-expanded', String(open));
+    });
+  }
+
+  /* case filtering */
+  var btns = Array.prototype.slice.call(document.querySelectorAll('.filters button'));
+  var cases = Array.prototype.slice.call(document.querySelectorAll('.case'));
+  var count = document.getElementById('count');
 
   function apply(f) {
     var shown = 0;
     cases.forEach(function (c) {
-      var groups = (c.dataset.groups || '').split(' ');
-      var on = f === 'all' || groups.indexOf(f) > -1;
+      var on = f === 'all' || (c.dataset.groups || '').split(' ').indexOf(f) > -1;
       c.hidden = !on;
       if (on) shown++;
     });
-    btns.forEach(function (b) {
-      b.setAttribute('aria-pressed', String(b.dataset.f === f));
-    });
+    btns.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.f === f)); });
     count.textContent = 'Showing ' + shown + ' of ' + cases.length + ' cases';
   }
-
   btns.forEach(function (b) {
     b.addEventListener('click', function () { apply(b.dataset.f); });
   });
 
-  var btn = document.getElementById('cf-copybtn');
-  var addr = document.getElementById('cf-mailaddr');
+  /* copy email */
+  var btn = document.getElementById('copy');
+  var addr = document.getElementById('mail');
   if (btn && addr) {
     btn.addEventListener('click', function () {
       function selectIt() {
@@ -1149,9 +1176,7 @@
       }
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(addr.textContent).then(done, selectIt);
-      } else {
-        selectIt();
-      }
+      } else { selectIt(); }
     });
   }
 })();
